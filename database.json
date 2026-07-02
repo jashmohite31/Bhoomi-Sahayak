@@ -1,0 +1,463 @@
+{
+  "users": {
+    "123456789012": {
+      "name": "Test User",
+      "aadhaar": "123456789012",
+      "mobile": "9876543210",
+      "landRecord": {
+        "state": "Maharashtra",
+        "district": "Mumbai",
+        "taluka": "Mumbai",
+        "village": "Bandra",
+        "surveyNo": "12A",
+        "areaAcres": 1.8,
+        "circleRate": 4500,
+        "estimatedCost": 39204000,
+        "ownerName": "Test User",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_5.png"
+      },
+      "familyTree": null,
+      "notifications": [
+        {
+          "id": 1,
+          "type": "warning",
+          "message": "Adjoining plot owner filed a boundary survey request.",
+          "date": "2026-07-02"
+        },
+        {
+          "id": 2,
+          "type": "success",
+          "message": "No unauthorized sales caveats or transaction blocks found on this Khasra.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "956854125896": {
+      "name": "Jash Mohite",
+      "aadhaar": "956854125896",
+      "mobile": "8528558555",
+      "landRecord": {
+        "state": "Gujarat",
+        "district": "Ahmedabad",
+        "taluka": "Daskroi",
+        "village": "Jetalpur",
+        "surveyNo": "89-A",
+        "areaAcres": 2.7,
+        "circleRate": 3500,
+        "estimatedCost": 45738000,
+        "ownerName": "Jash Mohite",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_3.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Jash Mohite",
+          "relation": "Self",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Anil Mohite",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Surekha Mohite",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Pooja Mohite",
+          "relation": "Spouse",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Karan Mohite",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Riya Mohite",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "warning",
+          "message": "Adjoining plot owner filed a boundary survey request.",
+          "date": "2026-07-02"
+        },
+        {
+          "id": 2,
+          "type": "success",
+          "message": "No unauthorized sales caveats or transaction blocks found on this Khasra.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "111111111111": {
+      "name": "Ramesh Sharma",
+      "aadhaar": "111111111111",
+      "mobile": "9876543211",
+      "landRecord": {
+        "state": "Maharashtra",
+        "district": "Pune",
+        "taluka": "Haveli",
+        "village": "Wagholi",
+        "surveyNo": "45/A",
+        "areaAcres": 2.5,
+        "circleRate": 4500,
+        "estimatedCost": 54450000,
+        "ownerName": "Ramesh Sharma",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_1.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Ramesh Sharma",
+          "relation": "Self",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Anil Sharma",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Surekha Sharma",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Pooja Sharma",
+          "relation": "Spouse",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Karan Sharma",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Riya Sharma",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "success",
+          "message": "Ownership mutation records verified matching state registers.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "222222222222": {
+      "name": "Rajesh Verma",
+      "aadhaar": "222222222222",
+      "mobile": "9876543212",
+      "landRecord": {
+        "state": "Karnataka",
+        "district": "Bangalore",
+        "taluka": "Bangalore South",
+        "village": "Begur",
+        "surveyNo": "102",
+        "areaAcres": 1.2,
+        "circleRate": 5200,
+        "estimatedCost": 30199680,
+        "ownerName": "Rajesh Verma",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_2.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Rajesh Verma",
+          "relation": "Self",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Suresh Verma",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Meena Verma",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Kavita Verma",
+          "relation": "Spouse",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Rohan Verma",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Sneha Verma",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "success",
+          "message": "Land valuation certificate logged securely in Bhoomi Sahayak database.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "333333333333": {
+      "name": "Amit Patel",
+      "aadhaar": "333333333333",
+      "mobile": "9876543213",
+      "landRecord": {
+        "state": "Maharashtra",
+        "district": "Mumbai",
+        "taluka": "Daskroi",
+        "village": "Wagholi",
+        "surveyNo": "45/A",
+        "areaAcres": 1.8,
+        "circleRate": 4500,
+        "estimatedCost": 39204000,
+        "ownerName": "Amit Patel",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_land_parcel.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Amit Patel",
+          "relation": "Self",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Harish Patel",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Kokila Patel",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Neha Patel",
+          "relation": "Spouse",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Jay Patel",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Diya Patel",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "warning",
+          "message": "Notice issued: local public works planning nearby boundary.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "444444444444": {
+      "name": "Priya Das",
+      "aadhaar": "444444444444",
+      "mobile": "9876543214",
+      "landRecord": {
+        "state": "West Bengal",
+        "district": "North 24 Parganas",
+        "taluka": "Barasat",
+        "village": "Bhatra",
+        "surveyNo": "204",
+        "areaAcres": 0.8,
+        "circleRate": 2500,
+        "estimatedCost": 9680000,
+        "ownerName": "Priya Das",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_4.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Priya Das",
+          "relation": "Self",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Bimal Das",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Maya Das",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Subir Das",
+          "relation": "Spouse",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Deb Das",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Pooja Das",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "success",
+          "message": "Certified land ownership classification matched with state registers.",
+          "date": "2026-07-02"
+        }
+      ]
+    },
+    "555555555555": {
+      "name": "Vikram Singh",
+      "aadhaar": "555555555555",
+      "mobile": "9876543215",
+      "landRecord": {
+        "state": "Uttar Pradesh",
+        "district": "Noida",
+        "taluka": "Dadri",
+        "village": "Gejha",
+        "surveyNo": "77/C",
+        "areaAcres": 1.5,
+        "circleRate": 2800,
+        "estimatedCost": 20328000,
+        "ownerName": "Vikram Singh",
+        "legalStatus": "Clear Title (No active civil disputes)",
+        "satelliteImage": "satellite_parcel_5.png"
+      },
+      "familyTree": [
+        {
+          "id": "1",
+          "name": "Vikram Singh",
+          "relation": "Self",
+          "avatar": "male-adult",
+          "parentId": null
+        },
+        {
+          "id": "2",
+          "name": "Pratap Singh",
+          "relation": "Father",
+          "avatar": "male-elder",
+          "parentId": null
+        },
+        {
+          "id": "3",
+          "name": "Sharda Singh",
+          "relation": "Mother",
+          "avatar": "female-elder",
+          "parentId": null
+        },
+        {
+          "id": "4",
+          "name": "Sunita Singh",
+          "relation": "Spouse",
+          "avatar": "female-adult",
+          "parentId": null
+        },
+        {
+          "id": "5",
+          "name": "Aditya Singh",
+          "relation": "Son",
+          "avatar": "boy",
+          "parentId": "1"
+        },
+        {
+          "id": "6",
+          "name": "Anjali Singh",
+          "relation": "Daughter",
+          "avatar": "girl",
+          "parentId": "1"
+        }
+      ],
+      "notifications": [
+        {
+          "id": 1,
+          "type": "warning",
+          "message": "Notice of survey alignment update issued by land survey authority.",
+          "date": "2026-07-02"
+        }
+      ]
+    }
+  }
+}

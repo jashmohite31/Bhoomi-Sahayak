@@ -1,0 +1,16 @@
+{
+  "name": "bhoomi-sahayak-backend",
+  "version": "1.0.0",
+  "description": "Backend for Bhoomi Sahayak - land dispute resolution helper",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2"
+  }
+}

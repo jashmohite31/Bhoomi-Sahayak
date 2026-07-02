@@ -1,0 +1,3334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-translate="app_title">Bhoomi Sahayak — Find your way through a land dispute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+  :root {
+    --paper: #EFE8DA;
+    --paper-dark: #E4DBC7;
+    --ink: #1F3B4D;
+    --ink-light: #3E5A6C;
+    --stamp: #A13D3D;
+    --stamp-dark: #832F2F;
+    --ledger: #8A7B4F;
+    --line: rgba(31,59,77,0.18);
+    --white: #FBF9F4;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --success: #2E5E3A;
+    --warning: #B37400;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(31,59,77,0.035) 40px);
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--stamp);
+    outline-offset: 3px;
+  }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Header ---------- */
+  header {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    background: rgba(239, 232, 218, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 34px; height: 34px;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    transform: rotate(-8deg);
+  }
+  nav { display: flex; align-items: center; gap: 28px; font-size: 0.92rem; font-weight: 500; }
+  nav a { text-decoration: none; opacity: 0.75; transition: opacity .15s; }
+  nav a:hover { opacity: 1; }
+
+  /* Header controls */
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .lang-btn {
+    background: transparent;
+    border: 1px solid var(--ink);
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .15s;
+  }
+  .lang-btn:hover {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .auth-btn {
+    background: var(--stamp);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .auth-btn:hover { background: var(--stamp-dark); }
+  .user-badge {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    background: var(--paper-dark);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+  }
+  .user-badge .logout-link {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--stamp);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 90px 0 70px;
+    position: relative;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ledger);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    max-width: 12em;
+    letter-spacing: -0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--stamp);
+  }
+  .hero-sub {
+    margin-top: 26px;
+    font-size: 1.15rem;
+    max-width: 38em;
+    color: var(--ink-light);
+  }
+  .hero-actions {
+    margin-top: 38px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 14px 26px;
+    border-radius: 4px;
+    border: 2px solid var(--ink);
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--ink-light); }
+  .btn-ghost:hover { background: rgba(31,59,77,0.06); }
+
+  /* Stamp signature element */
+  .stamp-seal {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    transform: rotate(-18deg) scale(1.4);
+    transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.3,1.2);
+  }
+  .stamp-seal.stamped {
+    opacity: 0.9;
+    transform: rotate(-12deg) scale(1);
+  }
+  @media (max-width: 760px) {
+    .stamp-seal { display: none; }
+  }
+
+  /* ---------- Sections generic ---------- */
+  section { padding: 70px 0; border-bottom: 1px solid var(--line); position: relative; }
+  section:last-of-type { border-bottom: none; }
+  .section-head { max-width: 40em; margin-bottom: 40px; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ledger);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  }
+  .section-sub { margin-top: 14px; color: var(--ink-light); font-size: 1.02rem; }
+
+  /* ---------- Wizard ---------- */
+  .wizard {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 36px;
+    box-shadow: 0 1px 0 rgba(31,59,77,0.05);
+  }
+  .wizard-step-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ledger);
+    margin-bottom: 6px;
+  }
+  .wizard-selectors {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .wizard-select {
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    border-radius: 4px;
+    color: var(--ink);
+    min-width: 180px;
+    cursor: pointer;
+  }
+  .dispute-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+  }
+  @media (max-width: 620px) { .dispute-grid { grid-template-columns: 1fr; } }
+  .dispute-card {
+    text-align: left;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    border-radius: 6px;
+    padding: 18px 20px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: border-color .15s, transform .15s;
+  }
+  .dispute-card:hover { border-color: var(--stamp); transform: translateY(-2px); }
+  .dispute-card .name { font-weight: 700; font-size: 1.02rem; }
+  .dispute-card .desc { font-size: 0.88rem; color: var(--ink-light); margin-top: 4px; }
+
+  .qblock { margin-top: 22px; }
+  .qblock label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .option-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .option-btn {
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    transition: all .15s;
+  }
+  .option-btn:hover { border-color: var(--ink); }
+  .option-btn.selected {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+
+  /* Result Card & Flow Diagrams */
+  .result-card {
+    margin-top: 26px;
+    border-left: 4px solid var(--stamp);
+    background: var(--paper);
+    padding: 24px 26px;
+    border-radius: 0 6px 6px 0;
+    display: none;
+  }
+  .result-card.show { display: block; }
+  .result-card .rlabel {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--stamp-dark);
+    margin-bottom: 10px;
+  }
+  .result-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .result-card ul { margin: 12px 0 20px 20px; }
+  .result-card li { margin-bottom: 6px; }
+
+  .procedure-flow {
+    margin-top: 28px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+  .flow-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--ledger);
+    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+  }
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .flow-steps { grid-template-columns: 1fr; }
+  }
+  .flow-step-card {
+    background: var(--white);
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    padding: 14px;
+    font-size: 0.85rem;
+    position: relative;
+  }
+  .flow-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    background: var(--ink);
+    color: var(--white);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+  }
+  .flow-step-title { font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .flow-step-desc { color: var(--ink-light); font-size: 0.78rem; line-height: 1.4; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 0.88rem;
+    text-decoration: underline;
+    color: var(--ink-light);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+  }
+
+  /* ---------- Gating overlay for guest users ---------- */
+  .gated-container {
+    position: relative;
+  }
+  .gated-shield {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(239, 232, 218, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    border-radius: 8px;
+  }
+  .shield-box {
+    background: var(--white);
+    border: 2px solid var(--ink);
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 440px;
+    box-shadow: 0 4px 20px rgba(31,59,77,0.15);
+  }
+  .shield-icon {
+    font-size: 2.2rem;
+    color: var(--stamp);
+    margin-bottom: 12px;
+  }
+  .shield-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .shield-desc {
+    font-size: 0.92rem;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Government Registry Authentication Modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(31, 59, 77, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    overflow-y: auto;
+    padding: 30px 10px;
+  }
+  .modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-card {
+    background: var(--paper);
+    border: 3px double var(--ink);
+    width: 100%;
+    max-width: 460px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(31,59,77,0.015) 40px);
+  }
+  .modal-overlay.show .modal-card {
+    transform: translateY(0);
+  }
+  .modal-header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .modal-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+  }
+  .modal-header .sub {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+  .modal-close {
+    position: absolute;
+    right: 18px; top: 18px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.4rem;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  .modal-close:hover { opacity: 1; }
+  .modal-body {
+    padding: 28px;
+  }
+  .form-group {
+    margin-bottom: 18px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--ledger);
+    font-weight: 600;
+  }
+  .form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 4px;
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--ink);
+    transition: border-color .15s;
+  }
+  .form-input:focus {
+    border-color: var(--stamp);
+    outline: none;
+  }
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+  .modal-btn {
+    width: 100%;
+    background: var(--stamp);
+    color: var(--white);
+    border: none;
+    padding: 13px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .modal-btn:hover { background: var(--stamp-dark); }
+  .modal-btn:disabled {
+    background: var(--ink-light);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .otp-panel {
+    display: none;
+    margin-top: 18px;
+    border-top: 1px dashed var(--line);
+    padding-top: 18px;
+  }
+  .otp-info {
+    font-size: 0.8rem;
+    color: var(--success);
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+  }
+  .modal-disclaimer {
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    margin-top: 16px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ---------- Unified Land Registry Dashboard ---------- */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 28px;
+    margin-top: 30px;
+  }
+  @media (max-width: 990px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Dashboard Cards */
+  .dash-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .dash-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 10px;
+  }
+  .dash-card-title span.badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    background: var(--paper-dark);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  /* Profile Card info */
+  .profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    font-size: 0.88rem;
+  }
+  .profile-item .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ledger);
+    text-transform: uppercase;
+  }
+  .profile-item .value {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .session-info {
+    grid-column: span 2;
+    margin-top: 10px;
+    background: var(--paper);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    border-left: 3px solid var(--ink);
+  }
+
+  /* Notifications alert center */
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .alert-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    border-left: 4px solid var(--line);
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  .alert-item.warning {
+    background: #FFF9E6;
+    border-left-color: var(--warning);
+    color: #8A5B00;
+  }
+  .alert-item.success {
+    background: #EBF5EE;
+    border-left-color: var(--success);
+    color: #1E4627;
+  }
+  .alert-item.info {
+    background: rgba(31,59,77,0.04);
+    border-left-color: var(--ink);
+    color: var(--ink);
+  }
+  .alert-date {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  /* Land record locator & fetched state */
+  .land-search-box {
+    margin-bottom: 20px;
+  }
+  .search-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 480px) {
+    .search-inputs { grid-template-columns: 1fr; }
+  }
+  .search-input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+  .search-input:focus { border-color: var(--stamp); outline: none; }
+
+  /* Fetch Loading Animation */
+  .fetch-loading-overlay {
+    display: none;
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(251, 249, 244, 0.95);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  .fetch-spinner {
+    width: 44px; height: 44px;
+    border: 4px dashed var(--stamp);
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    margin-bottom: 16px;
+  }
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  .fetch-status {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .fetch-log {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ledger);
+    margin-top: 6px;
+    height: 16px;
+  }
+
+  /* Rate limiter Cooldown overlay */
+  .cooldown-overlay {
+    display: none;
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(255, 245, 230, 0.95);
+    z-index: 55;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid var(--warning);
+  }
+  .cooldown-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--warning);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cooldown-timer {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--stamp);
+    margin: 10px 0;
+  }
+
+  /* Land details display */
+  .land-details-view {
+    display: none;
+  }
+  .land-details-view.active {
+    display: block;
+  }
+  .satellite-map-container {
+    width: 100%;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  }
+  .satellite-map-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .satellite-marker {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(161, 61, 61, 0.9);
+    color: var(--white);
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+  }
+  .val-calculator {
+    background: var(--paper);
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    margin-top: 14px;
+  }
+  .val-slider-row {
+    margin-top: 10px;
+  }
+  .val-slider-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--ledger);
+  }
+  .val-slider {
+    width: 100%;
+    margin: 8px 0;
+    accent-color: var(--stamp);
+  }
+  .val-cost-box {
+    margin-top: 12px;
+    text-align: center;
+    background: var(--white);
+    padding: 10px;
+    border: 1px dashed var(--stamp);
+    border-radius: 4px;
+  }
+  .val-cost-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+  }
+  .val-cost-value {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--stamp);
+  }
+
+  /* Family Tree Node Styles */
+  .tree-workspace {
+    width: 100%;
+    background: var(--paper);
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    min-height: 380px;
+    overflow: auto;
+    position: relative;
+    padding: 28px;
+  }
+  .tree-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+  }
+  .tree-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    position: relative;
+  }
+  .tree-node {
+    background: var(--white);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 10px 14px;
+    min-width: 150px;
+    max-width: 180px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(31,59,77,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s;
+    cursor: pointer;
+  }
+  .tree-node:hover {
+    transform: scale(1.03);
+    border-color: var(--stamp);
+  }
+  .tree-node .node-avatar {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--paper);
+    margin-bottom: 8px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .tree-node .node-avatar svg {
+    width: 32px; height: 32px;
+  }
+  .tree-node .node-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .tree-node .node-relation {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ledger);
+    text-transform: uppercase;
+    margin-top: 3px;
+    background: var(--paper);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .tree-node .node-share {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    color: var(--stamp);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .node-actions {
+    position: absolute;
+    top: -8px; right: -8px;
+    display: none;
+    gap: 4px;
+  }
+  .tree-node:hover .node-actions {
+    display: flex;
+  }
+  .node-act-btn {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--ink);
+    background: var(--white);
+    font-size: 0.65rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .node-act-btn.delete { color: var(--white); background: var(--stamp); border-color: var(--stamp); }
+
+  /* Tree connections SVG */
+  .tree-svg-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .tree-actions-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    gap: 10px;
+  }
+
+  /* Node creator form overlay */
+  .node-form-card {
+    display: none;
+    margin-top: 16px;
+    padding: 18px;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    background: var(--paper);
+  }
+  .avatar-select-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin: 8px 0 14px;
+  }
+  .avatar-option {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px;
+    background: var(--white);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+  }
+  .avatar-option svg { width: 28px; height: 28px; }
+  .avatar-option:hover { border-color: var(--ink); }
+  .avatar-option.selected { border-color: var(--stamp); background: var(--paper-dark); }
+
+  /* ---------- AI Chat ---------- */
+  .chat-panel {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 32px;
+  }
+  .chat-panel .section-label { color: #C9B37E; }
+  .chat-panel h2 { color: var(--white); }
+  .chat-panel .section-sub { color: rgba(251,249,244,0.7); }
+  .chat-window {
+    margin-top: 26px;
+    background: rgba(251,249,244,0.05);
+    border: 1px solid rgba(251,249,244,0.15);
+    border-radius: 6px;
+    min-height: 160px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .msg { margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; color: rgba(251,249,244,0.9); }
+  .msg p { margin: 6px 0; }
+  .msg ul, .msg ol { margin: 6px 0 6px 20px; padding-left: 0; }
+  .msg li { margin-bottom: 6px; }
+  .msg strong { color: var(--white); font-weight: 700; }
+  .msg em { font-style: italic; color: rgba(251,249,244,0.85); }
+  .msg h3 { font-size: 1.1rem; margin: 12px 0 6px 0; color: var(--white); font-weight: 700; }
+  .msg h4 { font-size: 1.05rem; margin: 10px 0 4px 0; color: var(--white); font-weight: 600; }
+  .msg h5 { font-size: 1rem; margin: 8px 0 2px 0; color: var(--white); font-weight: 600; }
+  .msg .who {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .msg.user .who { color: #C9B37E; }
+  .chat-input-row { display: flex; gap: 10px; margin-top: 16px; }
+  .chat-input-row input {
+    flex: 1;
+    padding: 13px 16px;
+    border-radius: 5px;
+    border: 1px solid rgba(251,249,244,0.25);
+    background: rgba(251,249,244,0.08);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+  }
+  .chat-input-row input::placeholder { color: rgba(251,249,244,0.4); }
+  .chat-input-row button {
+    background: var(--stamp);
+    color: var(--white);
+    border: none;
+    padding: 0 24px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .chat-input-row button:hover { background: var(--stamp-dark); }
+  .disclaimer {
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: rgba(251,249,244,0.5);
+    font-family: var(--font-mono);
+  }
+
+  /* ---------- Land Detail Tabs ---------- */
+  .land-tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2.5px solid var(--line);
+    margin-bottom: 16px;
+    margin-top: 10px;
+  }
+  .land-tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    padding: 10px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-bottom: -2.5px;
+    font-family: var(--font-body);
+  }
+  .land-tab-btn:hover {
+    color: var(--ink);
+  }
+  .land-tab-btn.active {
+    color: var(--stamp);
+    border-bottom-color: var(--stamp);
+  }
+  .land-tab-panel {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .land-error-banner {
+    background: rgba(161, 61, 61, 0.08);
+    border: 1px solid var(--stamp);
+    color: var(--stamp);
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: var(--font-mono);
+  }
+
+  /* ---------- Lawyer Directory ---------- */
+  .directory-search {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .directory-search input {
+    flex: 1;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: var(--white);
+  }
+  .directory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 680px) {
+    .directory-grid { grid-template-columns: 1fr; }
+  }
+  .lawyer-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .lawyer-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--paper);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--ink);
+  }
+  .lawyer-avatar svg { width: 40px; height: 40px; }
+  .lawyer-info {
+    flex: 1;
+  }
+  .lawyer-name { font-weight: 700; font-size: 1.05rem; }
+  .lawyer-title { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ledger); text-transform: uppercase; }
+  .lawyer-specialty {
+    font-size: 0.8rem;
+    background: var(--paper);
+    color: var(--ink-light);
+    padding: 2px 8px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .lawyer-contact { font-size: 0.82rem; color: var(--ink-light); margin-top: 8px; }
+  .lawyer-action {
+    background: transparent;
+    border: 1px solid var(--stamp);
+    color: var(--stamp);
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all .15s;
+  }
+  .lawyer-action:hover {
+    background: var(--stamp);
+    color: var(--white);
+  }
+
+  /* ---------- Roadmap ---------- */
+  .roadmap-list { list-style: none; margin-top: 10px; }
+  .roadmap-item {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .roadmap-item:last-child { border-bottom: 1px solid var(--line); }
+  .rstatus {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    height: fit-content;
+    white-space: nowrap;
+  }
+  .rstatus.live { background: #DCE7DC; color: #2E5E3A; }
+  .rstatus.next { background: #F0DFC4; color: var(--stamp-dark); }
+  .rstatus.later { background: var(--paper-dark); color: var(--ink-light); }
+  .rtext .name { font-weight: 700; }
+  .rtext .desc { font-size: 0.9rem; color: var(--ink-light); margin-top: 2px; }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-family: var(--font-mono);
+  }
+
+  /* Prototype Warning Banner */
+  .warning-banner {
+    background: #FFF3CD;
+    color: #856404;
+    border-bottom: 1px solid #FFEBA8;
+    padding: 10px 20px;
+    font-size: 0.82rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Auth Tabs */
+  .auth-tabs {
+    display: flex;
+    border-bottom: 1.5px solid var(--line);
+    background: var(--paper-dark);
+  }
+  .auth-tab {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    color: var(--ink-light);
+    border-bottom: 3px solid transparent;
+    transition: all .15s;
+  }
+  .auth-tab:hover {
+    color: var(--ink);
+  }
+  .auth-tab.active {
+    color: var(--stamp);
+    border-bottom-color: var(--stamp);
+    background: var(--paper);
+  }
+</style>
+</head>
+<body>
+
+<div class="warning-banner" id="warningBanner" data-translate="warning_banner_text">
+  ⚠️ PROTOTYPE DEMO: This is a personal portfolio concept project. It is NOT affiliated with, authorized by, or associated with the Government of India, UIDAI, or any State Revenue Department. Do NOT enter real Aadhaar or personal credentials. Use test inputs only.
+</div>
+
+<header>
+  <div class="wrap header-inner">
+    <div class="brand" style="display: flex; align-items: center;">
+      <img src="logo.png" alt="Bhoomi Sahayak Logo" style="height: 60px; width: 60px; margin-right: 16px; border-radius: 50%; object-fit: cover;">
+      <span data-translate="brand_name">Bhoomi Sahayak</span>
+    </div>
+    <nav>
+      <a href="#wizard" data-translate="nav_wizard">Find your office</a>
+      <a href="#dashboard" data-translate="nav_dashboard">Registry Dashboard</a>
+      <a href="#ask" data-translate="nav_chat">Ask Assistant</a>
+      <a href="#directory" data-translate="nav_directory">Lawyer Directory</a>
+      
+      <div class="header-controls">
+        <button id="langToggle" class="lang-btn" onclick="toggleLanguage()">हिन्दी</button>
+        <button id="authHeaderBtn" class="auth-btn" onclick="openAuthModal()" data-translate="btn_login">Sign In</button>
+        <div id="userHeaderBadge" class="user-badge">
+          <span id="headerName">User</span>
+          <span class="logout-link" onclick="handleLogout()" data-translate="btn_logout">Logout</span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="position:relative;">
+    <div class="eyebrow" data-translate="hero_eyebrow">A guide for land &amp; property disputes in India</div>
+    <h1 data-translate="hero_title">Most people don't lose land disputes on facts.<br>They lose them on <em>not knowing where to go.</em></h1>
+    <p class="hero-sub" data-translate="hero_sub">Tell us what kind of dispute you're facing, and we'll point you to the right office, court, or first step — in plain language, no legal jargon.</p>
+    <div class="hero-actions">
+      <a href="#wizard" class="btn btn-primary" data-translate="btn_start_wizard">Start the wizard</a>
+      <a href="#ask" class="btn btn-ghost" data-translate="btn_ask_chat">Ask a question instead</a>
+    </div>
+
+    <svg class="stamp-seal" id="stampSeal" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="75" cy="75" r="68" fill="none" stroke="#A13D3D" stroke-width="3"/>
+      <circle cx="75" cy="75" r="58" fill="none" stroke="#A13D3D" stroke-width="1.5"/>
+      <text x="75" y="55" text-anchor="middle" fill="#A13D3D" font-family="IBM Plex Mono" font-size="10" letter-spacing="1" data-translate="seal_verified">VERIFIED</text>
+      <text x="75" y="85" text-anchor="middle" fill="#A13D3D" font-family="Fraunces" font-weight="700" font-size="16" data-translate="seal_guide">GUIDE</text>
+      <text x="75" y="102" text-anchor="middle" fill="#A13D3D" font-family="IBM Plex Mono" font-size="9" data-translate="seal_step">FIRST STEP</text>
+    </svg>
+  </div>
+</section>
+
+<!-- Dispute Wizard -->
+<section id="wizard">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label" data-translate="wizard_step">Step 01</div>
+      <h2 data-translate="wizard_head">What kind of dispute is this?</h2>
+      <p class="section-sub" data-translate="wizard_sub">Select your State, then pick the dispute category. We will give you the legally recommended steps.</p>
+    </div>
+
+    <div class="wizard">
+      <div class="wizard-selectors">
+        <select id="stateSelect" class="wizard-select" onchange="onStateChange()">
+          <option value="Maharashtra">Maharashtra (महाराष्ट्र)</option>
+          <option value="Karnataka">Karnataka (कर्नाटक)</option>
+          <option value="Uttar Pradesh">Uttar Pradesh (उत्तर प्रदेश)</option>
+          <option value="Delhi">Delhi (दिल्ली)</option>
+        </select>
+        <select id="districtSelect" class="wizard-select">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <div id="wizardStage1">
+        <div class="wizard-step-label" data-translate="wizard_category_label">Choose a category</div>
+        <div class="dispute-grid" id="disputeGrid"></div>
+      </div>
+
+      <div id="wizardStage2" style="display:none;">
+        <div class="wizard-step-label" data-translate="wizard_followup_label">A couple of quick questions</div>
+        <div id="questionArea"></div>
+        <button class="back-link" onclick="resetWizard()" data-translate="btn_start_over">← start over</button>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="rlabel" data-translate="suggested_step_label">Suggested first step</div>
+        <h3 id="resultTitle"></h3>
+        <p id="resultBody"></p>
+        <ul id="resultList"></ul>
+        
+        <!-- Step-by-Step Procedure Flow Diagram -->
+        <div id="procedureFlow" class="procedure-flow">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Unified Land Registry Dashboard (GATED) -->
+<section id="dashboard">
+  <div class="wrap gated-container">
+    
+    <!-- Guest Gate Shield -->
+    <div id="dashboardShield" class="gated-shield">
+      <div class="shield-box">
+        <div class="shield-icon">🔒</div>
+        <div class="shield-title" data-translate="gate_title">Government Registry Portal</div>
+        <div class="shield-desc" data-translate="gate_desc">To access your personal land details, active legal alerts, and map the family heir inheritance tree, please verify your identity.</div>
+        <button class="btn btn-primary" onclick="openAuthModal()" data-translate="btn_verify_identity">Verify via Aadhaar OTP</button>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div class="section-label" data-translate="dash_label">Step 02 — Registry & Records</div>
+      <h2 data-translate="dash_head">Bhoomi Registry Dashboard</h2>
+      <p class="section-sub" data-translate="dash_sub">Locate your land record, check for active legal work, and draft a verified family inheritance structure.</p>
+    </div>
+
+    <!-- Active User Profile and Notification center -->
+    <div class="dash-card">
+      <div class="dash-card-title">
+        <span data-translate="dash_profile_title">Land Registry Profile</span>
+        <span class="badge" data-translate="badge_secured">Secured Session</span>
+      </div>
+      <div class="profile-details">
+        <div class="profile-item">
+          <div class="label" data-translate="lbl_registry_name">Registry Owner</div>
+          <div class="value" id="profileName">--</div>
+        </div>
+        <div class="profile-item">
+          <div class="label" data-translate="lbl_aadhaar">Aadhaar Card</div>
+          <div class="value" id="profileAadhaar">XXXX-XXXX-XXXX</div>
+        </div>
+        <div class="profile-item">
+          <div class="label" data-translate="lbl_mobile">Registered Mobile</div>
+          <div class="value" id="profileMobile">--</div>
+        </div>
+        <div class="profile-item">
+          <div class="label" data-translate="lbl_khata">Registered Khata/Khasra</div>
+          <div class="value" id="profileKhata">No parcel fetched</div>
+        </div>
+        <div class="profile-item">
+          <div class="label" data-translate="lbl_area">Total Registered Area</div>
+          <div class="value" id="profileLandArea">--</div>
+        </div>
+        <div class="session-info" id="profileSession">
+          Session Active. Waiting for credentials...
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Work Alert center -->
+    <div class="dash-card" style="border-color: var(--stamp);">
+      <div class="dash-card-title" style="color: var(--stamp);">
+        <span data-translate="dash_alerts_title">🚨 Land Legal Activity Alerts</span>
+        <span class="badge" style="background: var(--stamp); color: var(--white);" data-translate="badge_live">Live Feed</span>
+      </div>
+      <div class="alert-list" id="alertList">
+        <!-- Alerts loaded here -->
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Left Column: Family Tree Builder -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-card-title">
+            <span data-translate="dash_tree_title">Verified Family Tree (Read-Only)</span>
+            <span class="badge" data-translate="badge_heirloom">Inheritance Map</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--ink-light); margin-bottom: 14px;" data-translate="tree_instruction">
+            Verified Class I heirs registered under the Hindu Succession Act. Edits require formal Revenue Office petitions.
+          </p>
+
+          <div class="tree-workspace">
+            <svg class="tree-svg-canvas" id="treeSvgCanvas"></svg>
+            <div class="tree-container">
+              <!-- Dynamically structured rows -->
+              <div class="tree-row" id="treeRowElders"></div>
+              <div class="tree-row" id="treeRowSelf"></div>
+              <div class="tree-row" id="treeRowDescendants"></div>
+            </div>
+          </div>
+
+          <div class="tree-actions-bar">
+            <button class="btn btn-primary" style="width: 100%;" onclick="openCorrectionModal()" data-translate="btn_request_correction">Request Succession / Heir Correction</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Satellite Map & Land Valuation -->
+      <div>
+        <div class="dash-card">
+          <div class="dash-card-title">
+            <span data-translate="dash_land_title">Land Map &amp; Valuation</span>
+            <span class="badge" data-translate="badge_bhulekh">Bhulekh Registry</span>
+          </div>
+
+          <!-- Land Location Selector -->
+          <div class="land-search-box">
+            <p style="font-size:0.8rem; font-weight:600; color:var(--ledger); margin-bottom:8px;" data-translate="search_locate_label">LOCATE LAND RECORD BY SURVEY / KHATA NO:</p>
+            <div class="search-inputs">
+              <select id="landSearchTaluka" class="search-input">
+                <option value="">-- Select Taluka --</option>
+                <option value="Daskroi">Daskroi</option>
+                <option value="Haveli">Haveli</option>
+                <option value="Bangalore South">Bangalore South</option>
+                <option value="Barasat">Barasat</option>
+                <option value="Dadri">Dadri</option>
+              </select>
+              <select id="landSearchVillage" class="search-input">
+                <option value="">-- Select Village --</option>
+                <option value="Jetalpur">Jetalpur</option>
+                <option value="Wagholi">Wagholi</option>
+                <option value="Begur">Begur</option>
+                <option value="Bhatra">Bhatra</option>
+                <option value="Gejha">Gejha</option>
+              </select>
+              <select id="landSearchSurvey" class="search-input">
+                <option value="">-- Select Survey/Khata --</option>
+                <option value="89-A">89-A</option>
+                <option value="45/A">45/A</option>
+                <option value="102">102</option>
+                <option value="204">204</option>
+                <option value="77/C">77/C</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="width:100%; padding:10px; font-size:0.88rem;" onclick="fetchLandRecord()" data-translate="btn_fetch_land">Fetch Land Record</button>
+          </div>
+          <div id="landSearchError" class="land-error-banner" style="display: none;"></div>
+
+          <!-- Search Loading Animation Panel -->
+          <div class="fetch-loading-overlay" id="fetchOverlay">
+            <div class="fetch-spinner"></div>
+            <div class="fetch-status" id="fetchStatus">Connecting to Revenue Portal...</div>
+            <div class="fetch-log" id="fetchLog">Accessing Land Survey registries...</div>
+          </div>
+
+          <!-- Rate Limiter Cooldown Panel -->
+          <div class="cooldown-overlay" id="cooldownOverlay">
+            <div class="cooldown-title" data-translate="cooldown_title">Rate Limit Exceeded</div>
+            <p style="font-size:0.8rem; color:var(--ink-light);" data-translate="cooldown_desc">Too many land fetch attempts. Cooldown period active for security.</p>
+            <div class="cooldown-timer" id="cooldownTimer">60s</div>
+          </div>
+
+          <!-- Land Record Details & Visual Map -->
+          <div class="land-details-view" id="landDetailsView">
+            <div class="land-tabs">
+              <button class="land-tab-btn active" id="tabBtnMap" onclick="switchLandTab('map')" data-translate="tab_satellite_map">🛰️ Satellite Map</button>
+              <button class="land-tab-btn" id="tabBtnVal" onclick="switchLandTab('valuation')" data-translate="tab_valuation">💰 Valuation Calculator</button>
+            </div>
+
+            <!-- Tab 1: Satellite Map & Location Details -->
+            <div id="landTabMap" class="land-tab-panel">
+              <div class="satellite-map-container">
+                <img id="satelliteImg" src="satellite_land_parcel.png" alt="Satellite Survey Layout">
+                <div class="satellite-marker">PLOT BOUNDARY DETECTED</div>
+              </div>
+
+              <div class="profile-details" style="grid-template-columns: 1fr; gap:8px; margin-top: 12px;">
+                <div class="profile-item" style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--line); padding-bottom:6px;">
+                  <span class="label" data-translate="lbl_land_location">Location</span>
+                  <span class="value" id="landValLocation">--</span>
+                </div>
+                <div class="profile-item" style="display:flex; justify-content:space-between; border-bottom:1px dashed var(--line); padding-bottom:6px;">
+                  <span class="label" data-translate="lbl_land_status">Legal Title Status</span>
+                  <span class="value" style="color:var(--success);" id="landValStatus">Clear Title</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: Valuation Calculator -->
+            <div id="landTabValuation" class="land-tab-panel" style="display: none;">
+              <div class="val-calculator" style="margin-top: 5px;">
+                <div class="val-slider-label">
+                  <span data-translate="lbl_slider_area">Land Area (Acres)</span>
+                  <span id="valSliderDisplay">1.8 Acres</span>
+                </div>
+                <input type="range" id="valSlider" class="val-slider" min="0.1" max="10" step="0.1" value="1.8" oninput="updateValuation()">
+                
+                <div class="val-slider-label" style="margin-top:10px;">
+                  <span data-translate="lbl_circle_rate">Circle Rate (per sq yard)</span>
+                  <span id="valCircleRateDisplay">₹3200</span>
+                </div>
+
+                <div class="val-cost-box">
+                  <div class="val-cost-label" data-translate="lbl_estimated_cost">Estimated Market Valuation</div>
+                  <div class="val-cost-value" id="valEstimatedCost">₹0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI Legal Assistant (GATED) -->
+<section id="ask">
+  <div class="wrap gated-container">
+    
+    <!-- Guest Gate Shield -->
+    <div id="chatShield" class="gated-shield">
+      <div class="shield-box">
+        <div class="shield-icon">🔒</div>
+        <div class="shield-title" data-translate="gate_title">Government Registry Portal</div>
+        <div class="shield-desc" data-translate="gate_chat_desc">To access the legally-grounded Gemini AI assistant, please sign in to the portal first.</div>
+        <button class="btn btn-primary" onclick="openAuthModal()" data-translate="btn_verify_identity">Verify via Aadhaar OTP</button>
+      </div>
+    </div>
+
+    <div class="chat-panel">
+      <div class="section-label" data-translate="chat_label">Step 03 — Gated Assistant</div>
+      <h2 data-translate="chat_head">Ask Bhoomi Sahayak in your own words</h2>
+      <p class="section-sub" data-translate="chat_sub">Describe your dispute or questions. Answers are legally grounded in Indian property laws (RERA, Succession Act, Specific Relief Act).</p>
+
+      <div class="chat-window" id="chatWindow">
+        <div class="msg">
+          <div class="who">Assistant</div>
+          <div data-translate="chat_welcome">Hi — describe your situation in a line or two and I will provide the legally-correct first steps.</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="e.g. My neighbour built a wall on my land" />
+        <button onclick="sendChat()" data-translate="btn_ask">Ask</button>
+      </div>
+      <div class="disclaimer">⚠ General guidance only — not a substitute for advice from a lawyer or local revenue office.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lawyer Directory (GATED) -->
+<section id="directory">
+  <div class="wrap gated-container">
+    
+    <!-- Guest Gate Shield -->
+    <div id="directoryShield" class="gated-shield">
+      <div class="shield-box">
+        <div class="shield-icon">🔒</div>
+        <div class="shield-title" data-translate="gate_title">Government Registry Portal</div>
+        <div class="shield-desc" data-translate="gate_directory_desc">To search and contact verified property lawyers and dispute mediators, please verify your identity.</div>
+        <button class="btn btn-primary" onclick="openAuthModal()" data-translate="btn_verify_identity">Verify via Aadhaar OTP</button>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div class="section-label" data-translate="dir_label">Directory</div>
+      <h2 data-translate="dir_head">Verified Property Lawyers &amp; Mediators</h2>
+      <p class="section-sub" data-translate="dir_sub">Find and connect with certified property experts filterable by practice areas.</p>
+    </div>
+
+    <div class="directory-search">
+      <input type="text" id="dirSearch" placeholder="Search by name, specialization or city..." onkeyup="filterDirectory()">
+    </div>
+
+    <div class="directory-grid" id="directoryGrid">
+      <!-- Lawyer 1 -->
+      <div class="lawyer-card" data-specialty="revenue" data-location="mumbai pune">
+        <div class="lawyer-avatar">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="lawyer-info">
+          <div class="lawyer-name">Adv. Arvind K. Joshi</div>
+          <div class="lawyer-title" data-translate="lbl_senior_adv">Senior Property Lawyer</div>
+          <div class="lawyer-specialty" data-translate="spec_revenue">Revenue &amp; Encroachment Suits</div>
+          <div class="lawyer-contact">📍 Pune / Mumbai · 15+ Yrs Exp</div>
+          <button class="lawyer-action" onclick="alert('Consultation request sent successfully!')" data-translate="btn_consult">Request Consultation</button>
+        </div>
+      </div>
+      <!-- Lawyer 2 -->
+      <div class="lawyer-card" data-specialty="rera" data-location="noida delhi">
+        <div class="lawyer-avatar">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="lawyer-info">
+          <div class="lawyer-name">Adv. Neha Sharma</div>
+          <div class="lawyer-title" data-translate="lbl_rera_consult">RERA Consultant</div>
+          <div class="lawyer-specialty" data-translate="spec_rera">Builder &amp; RERA Disputes</div>
+          <div class="lawyer-contact">📍 Delhi NCR · 8 Yrs Exp</div>
+          <button class="lawyer-action" onclick="alert('Consultation request sent successfully!')" data-translate="btn_consult">Request Consultation</button>
+        </div>
+      </div>
+      <!-- Lawyer 3 -->
+      <div class="lawyer-card" data-specialty="partition" data-location="bangalore">
+        <div class="lawyer-avatar">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="lawyer-info">
+          <div class="lawyer-name">Adv. Sandeep Hegde</div>
+          <div class="lawyer-title" data-translate="lbl_civil_mediator">Civil &amp; Succession Mediator</div>
+          <div class="lawyer-specialty" data-translate="spec_partition">Inheritance &amp; Partition</div>
+          <div class="lawyer-contact">📍 Bangalore · 12 Yrs Exp</div>
+          <button class="lawyer-action" onclick="alert('Consultation request sent successfully!')" data-translate="btn_consult">Request Consultation</button>
+        </div>
+      </div>
+      <!-- Lawyer 4 -->
+      <div class="lawyer-card" data-specialty="rent" data-location="mumbai">
+        <div class="lawyer-avatar">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="lawyer-info">
+          <div class="lawyer-name">Adv. Priyanshu Mehta</div>
+          <div class="lawyer-title" data-translate="lbl_rent_expert">Rent Control Expert</div>
+          <div class="lawyer-specialty" data-translate="spec_rent">Tenancy &amp; Eviction Disputes</div>
+          <div class="lawyer-contact">📍 Mumbai City · 10 Yrs Exp</div>
+          <button class="lawyer-action" onclick="alert('Consultation request sent successfully!')" data-translate="btn_consult">Request Consultation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label" data-translate="roadmap_label">What's built vs. what's next</div>
+      <h2 data-translate="roadmap_head">Project roadmap</h2>
+      <p class="section-sub" data-translate="roadmap_sub">Built as a portfolio project — scoped intentionally, designed to grow.</p>
+    </div>
+    <ul class="roadmap-list">
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_1">Dispute-to-authority wizard</div>
+          <div class="desc" data-translate="road_desc_1">Covers boundary, inheritance, tenancy, and builder/RERA disputes with India-general guidance. Now supports local district selectors and visual flow charts.</div>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_2">Family Tree Registry &amp; Share Calculator</div>
+          <div class="desc" data-translate="road_desc_2">Visual inheritance model mapping and automated partition share estimations according to Hindu Succession Class I laws.</div>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_3">Government-Style Registry Login (Aadhaar &amp; OTP)</div>
+          <div class="desc" data-translate="road_desc_3">A mock OTP verification portal simulating secure Indian database connections for verified land lookup.</div>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_4">Land Valuation &amp; Satellite Map Dashboard</div>
+          <div class="desc" data-translate="road_desc_4">Automated boundary retrieval from mock Bhulekh database showing circle rate valuations and custom slider updates.</div>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_5">Land Legal Activity Alerts Feed</div>
+          <div class="desc" data-translate="road_desc_5">Live notifications about administrative tasks or nearby surveys logged against your survey parcel.</div>
+        </div>
+      </li>
+      <li class="roadmap-item">
+        <span class="rstatus live">Live</span>
+        <div class="rtext">
+          <div class="name" data-translate="road_item_6">Hindi Translation Toggle &amp; AI Language Grounding</div>
+          <div class="desc" data-translate="road_desc_6">A complete multi-lingual support system including translated UI strings and language-aware responses from Gemini API.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Auth Modal -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 data-translate="modal_auth_title">National Land Registry Portal</h3>
+      <div class="sub" data-translate="modal_auth_sub">Government of India · Registry Office</div>
+      <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+    </div>
+    
+    <div class="auth-tabs">
+      <button id="tabSignIn" class="auth-tab active" onclick="switchAuthTab('signin')" data-translate="tab_signin">Sign In (Registered User)</button>
+      <button id="tabRegister" class="auth-tab" onclick="switchAuthTab('register')" data-translate="tab_register">Register Land Account</button>
+    </div>
+
+    <div class="modal-body">
+      
+      <!-- Panel 1: Credentials entry -->
+      <div id="authCredentialsPanel">
+        <div class="form-group" id="formGroupNameGroup" style="display:none;">
+          <label data-translate="lbl_modal_name_dummy">Full Name (Dummy Name)</label>
+          <input type="text" id="authName" class="form-input" placeholder="e.g. Ramesh Kumar (Dummy Name)">
+        </div>
+        <div class="form-group">
+          <label data-translate="lbl_modal_aadhaar_dummy">Aadhaar Card Number (Use any 12 digits)</label>
+          <input type="text" id="authAadhaar" class="form-input" maxlength="12" placeholder="e.g. 000000000000 (Use any 12 digits)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+        <div class="form-group">
+          <label data-translate="lbl_modal_mobile_dummy">Registered Mobile Number (Use any 10 digits)</label>
+          <input type="text" id="authMobile" class="form-input" maxlength="10" placeholder="e.g. 9876543210 (Use any 10 digits)" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+
+        <button class="modal-btn" id="btnRequestOtp" onclick="sendAuthOtp()">
+          <span data-translate="btn_request_otp">Request Security OTP</span>
+        </button>
+      </div>
+
+      <!-- Panel 2: OTP Verification -->
+      <div class="otp-panel" id="authOtpPanel">
+        <div class="otp-info" id="otpInfoText" data-translate="otp_sent_msg">OTP sent successfully to registered mobile number.</div>
+        <div class="form-group">
+          <label data-translate="lbl_modal_otp">Enter 6-Digit OTP</label>
+          <input type="text" id="authOtpCode" class="form-input" maxlength="6" placeholder="Test OTP: 123456" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+        <button class="modal-btn" onclick="verifyAuthOtp()" data-translate="btn_verify_signin">Verify &amp; Sign In</button>
+      </div>
+
+      <div class="modal-disclaimer" data-translate="modal_disclaimer">
+        This is an official demo for the Bhoomi Sahayak Land dispute resolution portal. Standard privacy policies apply under the Information Technology Act.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Correction Petition Modal -->
+<div class="modal-overlay" id="correctionModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 data-translate="modal_correction_title">Succession / Legal Heir Amendment Petition</h3>
+      <div class="sub" data-translate="modal_correction_sub">Revenue Court &amp; Land Office · Government Registry</div>
+      <button class="modal-close" onclick="closeCorrectionModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 0.82rem; color: var(--ink-light); margin-bottom: 16px;" data-translate="correction_instruction">
+        As per the Land Revenue Code, modifications to the registered family tree (succession register) cannot be performed online. You must file a petition with supporting legal certificates. Your petition will be reviewed by the Tehsildar / Land Revenue Officer.
+      </p>
+
+      <div class="form-group">
+        <label data-translate="lbl_corr_type">Correction Type</label>
+        <select id="corrType" class="form-input">
+          <option value="addition" data-translate="opt_corr_add">Add Missing Legal Heir</option>
+          <option value="removal" data-translate="opt_corr_rem">Record Deceased Heir (Mutation)</option>
+          <option value="spelling" data-translate="opt_corr_spell">Spelling / Name Typo Correction</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="lbl_corr_name">Full Name of Heir (to be amended)</label>
+        <input type="text" id="corrHeirName" class="form-input" placeholder="e.g. Ramesh Kumar">
+      </div>
+
+      <div class="form-group">
+        <label data-translate="lbl_corr_relation">Relation to Registry Owner</label>
+        <select id="corrHeirRelation" class="form-input">
+          <option value="Son">Son (पुत्र)</option>
+          <option value="Daughter">Daughter (पुत्री)</option>
+          <option value="Spouse">Spouse (पति/पत्नी)</option>
+          <option value="Mother">Mother (माता)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="lbl_corr_grounds">Grounds for Amendment / Court Case Details</label>
+        <textarea id="corrGrounds" class="form-input" style="height: 60px; font-family: var(--font-body); padding:8px;" placeholder="e.g. Heir was left out of partition schedule, or Death Certificate reference no..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="lbl_corr_file">Upload Supporting Legal Documents (Succession Certificate / Death Certificate / Court Order)</label>
+        <input type="file" id="corrFile" class="form-input" style="padding: 5px;">
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button class="modal-btn" onclick="submitCorrectionPetition()" style="flex: 2; margin: 0;">
+          <span data-translate="btn_submit_petition">File Amendment Petition</span>
+        </button>
+        <button class="modal-btn btn-ghost" onclick="closeCorrectionModal()" style="flex: 1; background: transparent; border: 1.5px solid var(--line); color: var(--ink); margin: 0; height: auto; padding: 13px;" data-translate="btn_cancel">
+          Cancel
+        </button>
+      </div>
+
+      <div class="modal-disclaimer" data-translate="corr_warning">
+        ⚠️ Warning: Filing false declarations in land records is a punishable offence under Section 199 and 200 of the Indian Penal Code.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Bhoomi Sahayak — a portfolio project · General information only, not legal advice
+</footer>
+
+<script>
+  const BACKEND_URL = window.location.origin.includes('localhost') 
+    ? 'http://localhost:3000' 
+    : window.location.origin;
+  // Global States
+  let currentLanguage = 'en';
+  let currentUserToken = null;
+  let currentUserData = null;
+  let activeState = 'Maharashtra';
+  let activeDistrict = 'Mumbai';
+  
+  // Local Database of Districts
+  const stateDistricts = {
+    'Maharashtra': ['Mumbai', 'Pune', 'Nagpur', 'Thane'],
+    'Karnataka': ['Bangalore', 'Mysore', 'Hubli', 'Mangalore'],
+    'Uttar Pradesh': ['Noida', 'Lucknow', 'Kanpur', 'Varanasi'],
+    'Delhi': ['Central Delhi', 'New Delhi', 'North Delhi', 'South Delhi']
+  };
+
+  // UI Translation Dictionary (English and Hindi)
+  const translations = {
+    'en': {
+      'app_title': 'Bhoomi Sahayak — Find your way through a land dispute',
+      'warning_banner_text': '⚠️ PROTOTYPE DEMO: This is a personal portfolio concept project. It is NOT affiliated with, authorized by, or associated with the Government of India, UIDAI, or any State Revenue Department. Do NOT enter real Aadhaar or personal credentials. Use test inputs only.',
+      'lbl_modal_name_dummy': 'Full Name (Dummy Name)',
+      'lbl_modal_aadhaar_dummy': 'Aadhaar Card Number (Use any 12 digits)',
+      'lbl_modal_mobile_dummy': 'Registered Mobile Number (Use any 10 digits)',
+      'tab_signin': 'Sign In (Registered User)',
+      'tab_register': 'Register Land Account',
+      'dash_tree_title': 'Verified Family Tree (Read-Only)',
+      'tree_instruction': 'Verified Class I heirs registered under the Hindu Succession Act. Edits require formal Revenue Office petitions.',
+      'btn_request_correction': 'Request Succession / Heir Correction',
+      'modal_correction_title': 'Succession / Legal Heir Amendment Petition',
+      'modal_correction_sub': 'Revenue Court & Land Office · Government Registry',
+      'correction_instruction': 'As per the Land Revenue Code, modifications to the registered family tree (succession register) cannot be performed online. You must file a petition with supporting legal certificates. Your petition will be reviewed by the Tehsildar / Land Revenue Officer.',
+      'lbl_corr_type': 'Correction Type',
+      'opt_corr_add': 'Add Missing Legal Heir',
+      'opt_corr_rem': 'Record Deceased Heir (Mutation)',
+      'opt_corr_spell': 'Spelling / Name Typo Correction',
+      'lbl_corr_name': 'Full Name of Heir (to be amended)',
+      'lbl_corr_relation': 'Relation to Registry Owner',
+      'lbl_corr_grounds': 'Grounds for Amendment / Court Case Details',
+      'lbl_corr_file': 'Upload Supporting Legal Documents (Succession/Death Certificate)',
+      'btn_submit_petition': 'File Amendment Petition',
+      'corr_warning': '⚠️ Warning: Filing false declarations in land records is a punishable offence under Section 199 and 200 of the Indian Penal Code.',
+      'brand_name': 'Bhoomi Sahayak',
+      'nav_wizard': 'Find your office',
+      'nav_dashboard': 'Registry Dashboard',
+      'nav_chat': 'Ask Assistant',
+      'nav_directory': 'Lawyer Directory',
+      'btn_login': 'Sign In',
+      'btn_logout': 'Logout',
+      'hero_eyebrow': 'A guide for land & property disputes in India',
+      'hero_title': 'Most people don\'t lose land disputes on facts. They lose them on not knowing where to go.',
+      'hero_sub': 'Tell us what kind of dispute you\'re facing, and we\'ll point you to the right office, court, or first step — in plain language, no legal jargon.',
+      'btn_start_wizard': 'Start the wizard',
+      'btn_ask_chat': 'Ask a question instead',
+      'seal_verified': 'VERIFIED',
+      'seal_guide': 'GUIDE',
+      'seal_step': 'FIRST STEP',
+      'wizard_step': 'Step 01',
+      'wizard_head': 'What kind of dispute is this?',
+      'wizard_sub': 'Select your State, then pick the dispute category. We will give you the legally recommended steps.',
+      'wizard_category_label': 'Choose a category',
+      'wizard_followup_label': 'A couple of quick questions',
+      'btn_start_over': '← start over',
+      'suggested_step_label': 'Suggested first step',
+      'gate_title': 'Government Registry Portal',
+      'gate_desc': 'To access your personal land details, active legal alerts, and map the family heir inheritance tree, please verify your identity.',
+      'gate_chat_desc': 'To access the legally-grounded Gemini AI assistant, please sign in to the portal first.',
+      'gate_directory_desc': 'To search and contact verified property lawyers and dispute mediators, please verify your identity.',
+      'btn_verify_identity': 'Verify via Aadhaar OTP',
+      'dash_label': 'Step 02 — Registry & Records',
+      'dash_head': 'Bhoomi Registry Dashboard',
+      'dash_sub': 'Locate your land record, check for active legal work, and draft a verified family inheritance structure.',
+      'dash_profile_title': 'Land Registry Profile',
+      'badge_secured': 'Secured Session',
+      'badge_live': 'Live Feed',
+      'lbl_registry_name': 'Registry Owner',
+      'lbl_aadhaar': 'Aadhaar Card',
+      'lbl_mobile': 'Registered Mobile',
+      'lbl_khata': 'Registered Khata/Khasra',
+      'lbl_area': 'Total Registered Area',
+      'dash_alerts_title': '🚨 Land Legal Activity Alerts',
+      'dash_tree_title': 'Family Tree Builder',
+      'badge_heirloom': 'Inheritance Map',
+      'tree_instruction': 'Map out Class I heirs (widow, children, mother) to estimate partition shares under the Hindu Succession Act.',
+      'btn_add_member': 'Add Family Member',
+      'btn_save_registry': 'Save Registry Data',
+      'form_member_title': 'Add Family Member Details',
+      'form_member_name': 'Full Name',
+      'form_member_relation': 'Relationship to Owner',
+      'form_member_avatar': 'Choose Avatar Profile',
+      'btn_confirm': 'Confirm Member',
+      'btn_cancel': 'Cancel',
+      'dash_land_title': 'Land Map & Valuation',
+      'badge_bhulekh': 'Bhulekh Registry',
+      'tab_satellite_map': '🛰️ Satellite Map',
+      'tab_valuation': '💰 Valuation Calculator',
+      'search_locate_label': 'LOCATE LAND RECORD BY SURVEY / KHATA NO:',
+      'btn_fetch_land': 'Fetch Land Record',
+      'cooldown_title': 'Rate Limit Exceeded',
+      'cooldown_desc': 'Too many land fetch attempts. Cooldown period active for security.',
+      'lbl_land_location': 'Location',
+      'lbl_land_status': 'Legal Title Status',
+      'lbl_slider_area': 'Land Area (Acres)',
+      'lbl_circle_rate': 'Circle Rate (per sq yard)',
+      'lbl_estimated_cost': 'Estimated Market Valuation',
+      'chat_label': 'Step 03 — Gated Assistant',
+      'chat_head': 'Ask Bhoomi Sahayak in your own words',
+      'chat_sub': 'Describe your dispute or questions. Answers are legally grounded in Indian property laws (RERA, Succession Act, Specific Relief Act).',
+      'chat_welcome': 'Hi — describe your situation in a line or two and I will provide the legally-correct first steps.',
+      'btn_ask': 'Ask',
+      'dir_label': 'Directory',
+      'dir_head': 'Verified Property Lawyers & Mediators',
+      'dir_sub': 'Find and connect with certified property experts filterable by practice areas.',
+      'lbl_senior_adv': 'Senior Property Lawyer',
+      'spec_revenue': 'Revenue & Encroachment Suits',
+      'btn_consult': 'Request Consultation',
+      'lbl_rera_consult': 'RERA Consultant',
+      'spec_rera': 'Builder & RERA Disputes',
+      'lbl_civil_mediator': 'Civil & Succession Mediator',
+      'spec_partition': 'Inheritance & Partition',
+      'lbl_rent_expert': 'Rent Control Expert',
+      'spec_rent': 'Tenancy & Eviction Disputes',
+      'roadmap_label': 'What\'s built vs. what\'s next',
+      'roadmap_head': 'Project roadmap',
+      'roadmap_sub': 'Built as a portfolio project — scoped intentionally, designed to grow.',
+      'road_item_1': 'Dispute-to-authority wizard',
+      'road_desc_1': 'Covers boundary, inheritance, tenancy, and builder/RERA disputes with India-general guidance. Now supports local district selectors and visual flow charts.',
+      'road_item_2': 'Family Tree Registry & Share Calculator',
+      'road_desc_2': 'Visual inheritance model mapping and automated partition share estimations according to Hindu Succession Class I laws.',
+      'road_item_3': 'Government-Style Registry Login (Aadhaar & OTP)',
+      'road_desc_3': 'A mock OTP verification portal simulating secure Indian database connections for verified land lookup.',
+      'road_item_4': 'Land Valuation & Satellite Map Dashboard',
+      'road_desc_4': 'Automated boundary retrieval from mock Bhulekh database showing circle rate valuations and custom slider updates.',
+      'road_item_5': 'Land Legal Activity Alerts Feed',
+      'road_desc_5': 'Live notifications about administrative tasks or nearby surveys logged against your survey parcel.',
+      'road_item_6': 'Hindi Translation Toggle & AI Language Grounding',
+      'road_desc_6': 'A complete multi-lingual support system including translated UI strings and language-aware responses from Gemini API.',
+      'modal_auth_title': 'National Land Registry Portal',
+      'modal_auth_sub': 'Government of India · Registry Office',
+      'lbl_modal_name': 'Full Name (as per land records)',
+      'lbl_modal_aadhaar': 'Aadhaar Card Number (12 Digits)',
+      'lbl_modal_mobile': 'Registered Mobile Number (10 Digits)',
+      'btn_request_otp': 'Request Security OTP',
+      'otp_sent_msg': 'OTP sent successfully to registered mobile number.',
+      'lbl_modal_otp': 'Enter 6-Digit OTP',
+      'btn_verify_signin': 'Verify & Sign In',
+      'modal_disclaimer': 'This is an official demo for the Bhoomi Sahayak Land dispute resolution portal. Standard privacy policies apply under the Information Technology Act.'
+    },
+    'hi': {
+      'app_title': 'भूमि सहायक — भूमि विवाद निवारण के लिए सही मार्ग खोजें',
+      'warning_banner_text': '⚠️ प्रोटोटाइप डेमो: यह एक व्यक्तिगत पोर्टफोलियो अवधारणा परियोजना है। यह भारत सरकार, यूआईडीएआई (UIDAI), या किसी भी राज्य राजस्व विभाग से संबद्ध या अधिकृत नहीं है। कृपया वास्तविक आधार या व्यक्तिगत विवरण दर्ज न करें।',
+      'lbl_modal_name_dummy': 'पूरा नाम (काल्पनिक नाम)',
+      'lbl_modal_aadhaar_dummy': 'आधार कार्ड संख्या (कोई भी 12 अंक दर्ज करें)',
+      'lbl_modal_mobile_dummy': 'पंजीकृत मोबाइल संख्या (कोई भी 10 अंक दर्ज करें)',
+      'tab_signin': 'साइन इन (पंजीकृत उपयोगकर्ता)',
+      'tab_register': 'नया खाता पंजीकृत करें',
+      'dash_tree_title': 'सत्यापित पारिवारिक वृक्ष (केवल पढ़ने के लिए)',
+      'tree_instruction': 'हिंदू उत्तराधिकार अधिनियम के तहत पंजीकृत सत्यापित श्रेणी I के वारिस। परिवर्तनों के लिए राजस्व कार्यालय में औपचारिक याचिका की आवश्यकता होती है।',
+      'btn_request_correction': 'उत्तराधिकार / वारिस संशोधन का अनुरोध करें',
+      'modal_correction_title': 'उत्तराधिकार / कानूनी वारिस संशोधन याचिका',
+      'modal_correction_sub': 'राजस्व न्यायालय और भूमि कार्यालय · सरकारी रजिस्ट्री',
+      'correction_instruction': 'भूमि राजस्व संहिता के अनुसार, पंजीकृत पारिवारिक वृक्ष में संशोधन ऑनलाइन नहीं किए जा सकते। आपको सहायक कानूनी दस्तावेजों के साथ एक याचिका दायर करनी होगी। आपकी याचिका की समीक्षा तहसीलदार द्वारा की जाएगी।',
+      'lbl_corr_type': 'संशोधन प्रकार',
+      'opt_corr_add': 'लापता कानूनी वारिस को जोड़ें',
+      'opt_corr_rem': 'मृत वारिस का विवरण दर्ज करें (दाखिल-खारिज)',
+      'opt_corr_spell': 'वर्तनी / नाम सुधार',
+      'lbl_corr_name': 'वारिस का पूरा नाम (संशोधित किया जाने वाला)',
+      'lbl_corr_relation': 'मालिक से संबंध',
+      'lbl_corr_grounds': 'संशोधन के आधार / न्यायालयी वाद विवरण',
+      'lbl_corr_file': 'सहायक कानूनी दस्तावेज अपलोड करें (उत्तराधिकार/मृत्यु प्रमाण पत्र)',
+      'btn_submit_petition': 'संशोधन याचिका दर्ज करें',
+      'corr_warning': '⚠️ चेतावनी: भूमि अभिलेखों में झूठी घोषणाएं दाखिल करना भारतीय दंड संहिता की धारा 199 और 200 के तहत एक दंडनीय अपराध है।',
+      'brand_name': 'भूमि सहायक',
+      'nav_wizard': 'कार्यालय खोजें',
+      'nav_dashboard': 'रजिस्ट्री डैशबोर्ड',
+      'nav_chat': 'सहायक से पूछें',
+      'nav_directory': 'वकील सूची',
+      'btn_login': 'लॉग इन करें',
+      'btn_logout': 'लॉग आउट',
+      'hero_eyebrow': 'भारत में भूमि और संपत्ति विवादों के लिए कानूनी मार्गदर्शिका',
+      'hero_title': 'अधिकांश लोग तथ्यों के कारण भूमि विवाद नहीं हारते। वे केवल यह न जानने के कारण हारते हैं कि कहाँ जाना है।',
+      'hero_sub': 'हमें बताएं कि आप किस प्रकार के विवाद का सामना कर रहे हैं, और हम आपको उचित कार्यालय, न्यायालय, या पहले कदम की ओर निर्देशित करेंगे - सरल भाषा में, बिना कानूनी जटिलता के।',
+      'btn_start_wizard': 'विज़ार्ड शुरू करें',
+      'btn_ask_chat': 'सहायक से पूछें',
+      'seal_verified': 'सत्यापित',
+      'seal_guide': 'मार्गदर्शिका',
+      'seal_step': 'पहला कदम',
+      'wizard_step': 'चरण 01',
+      'wizard_head': 'यह किस प्रकार का विवाद है?',
+      'wizard_sub': 'अपने राज्य का चयन करें, फिर विवाद श्रेणी चुनें। हम आपको कानूनी रूप से अनुशंसित कदम प्रदान करेंगे।',
+      'wizard_category_label': 'श्रेणी चुनें',
+      'wizard_followup_label': 'कुछ त्वरित प्रश्न',
+      'btn_start_over': '← पुनः आरंभ करें',
+      'suggested_step_label': 'सुझाया गया पहला कदम',
+      'gate_title': 'सरकारी रजिस्ट्री पोर्टल',
+      'gate_desc': 'अपनी व्यक्तिगत भूमि विवरण, सक्रिय कानूनी अलर्ट देखने और उत्तराधिकार परिवार वृक्ष बनाने के लिए कृपया पहचान सत्यापित करें।',
+      'gate_chat_desc': 'कानूनी रूप से प्रमाणित जेमिनी एआई सहायक तक पहुंच प्राप्त करने के लिए कृपया पहले लॉगिन करें।',
+      'gate_directory_desc': 'सत्यापित संपत्ति वकीलों और विवाद मध्यस्थों से संपर्क करने के लिए कृपया अपनी पहचान सत्यापित करें।',
+      'btn_verify_identity': 'आधार ओटीपी द्वारा सत्यापित करें',
+      'dash_label': 'चरण 02 — रजिस्ट्री और रिकॉर्ड',
+      'dash_head': 'भूमि रजिस्ट्री डैशबोर्ड',
+      'dash_sub': 'अपने भूमि रिकॉर्ड का पता लगाएं, भूमि पर हो रहे कानूनी कार्यों की जांच करें, और उत्तराधिकार विलेख का नक्शा तैयार करें।',
+      'dash_profile_title': 'भूमि रजिस्ट्री प्रोफ़ाइल',
+      'badge_secured': 'सुरक्षित सत्र',
+      'badge_live': 'लाइव फीड',
+      'lbl_registry_name': 'रजिस्ट्री मालिक',
+      'lbl_aadhaar': 'आधार कार्ड',
+      'lbl_mobile': 'पंजीकृत मोबाइल',
+      'lbl_khata': 'पंजीकृत खाता/खसरा संख्या',
+      'lbl_area': 'कुल पंजीकृत क्षेत्रफल',
+      'dash_alerts_title': '🚨 भूमि कानूनी गतिविधि अलर्ट',
+      'dash_tree_title': 'पारिवारिक वृक्ष निर्माता',
+      'badge_heirloom': 'उत्तराधिकार मानचित्र',
+      'tree_instruction': 'हिंदू उत्तराधिकार अधिनियम के तहत विभाजन शेयरों का अनुमान लगाने के लिए श्रेणी I के वारिसों (विधवा, बच्चों, माता) का मानचित्र तैयार करें।',
+      'btn_add_member': 'परिवार के सदस्य को जोड़ें',
+      'btn_save_registry': 'रजिस्ट्री डेटा सहेजें',
+      'form_member_title': 'परिवार के सदस्य का विवरण',
+      'form_member_name': 'पूरा नाम',
+      'form_member_relation': 'मालिक से संबंध',
+      'form_member_avatar': 'अवतार प्रोफाइल चुनें',
+      'btn_confirm': 'सदस्य की पुष्टि करें',
+      'btn_cancel': 'रद्द करें',
+      'dash_land_title': 'भूमि मानचित्र और मूल्यांकन',
+      'badge_bhulekh': 'भूलेख रजिस्ट्री',
+      'tab_satellite_map': '🛰️ सैटेलाइट मानचित्र',
+      'tab_valuation': '💰 मूल्यांकन कैलकुलेटर',
+      'search_locate_label': 'सर्वे / खाता संख्या द्वारा भूमि खोजें:',
+      'btn_fetch_land': 'भूमि रिकॉर्ड प्राप्त करें',
+      'cooldown_title': 'अनुरोध सीमा पार',
+      'cooldown_desc': 'सुरक्षा कारणों से बहुत अधिक बार भूमि खोजने के कारण, अस्थाई प्रतिबंध सक्रिय है।',
+      'lbl_land_location': 'स्थान',
+      'lbl_land_status': 'कानूनी स्वत्व स्थिति',
+      'lbl_slider_area': 'भूमि क्षेत्र (एकड़)',
+      'lbl_circle_rate': 'सर्किल दर (प्रति वर्ग गज)',
+      'lbl_estimated_cost': 'अनुमानित बाजार मूल्यांकन',
+      'chat_label': 'चरण 03 — सुरक्षित एआई सहायक',
+      'chat_head': 'अपनी भाषा में भूमि सहायक से पूछें',
+      'chat_sub': 'अपने विवाद या प्रश्नों का वर्णन करें। उत्तर कानूनी रूप से भारतीय कानूनों (रेरा, उत्तराधिकार अधिनियम, विशिष्ट राहत अधिनियम) पर आधारित हैं।',
+      'chat_welcome': 'नमस्ते - अपनी स्थिति का संक्षेप में वर्णन करें और मैं आपको सही कानूनी कदम बताऊंगा।',
+      'btn_ask': 'पूछें',
+      'dir_label': 'निर्देशिका',
+      'dir_head': 'सत्यापित संपत्ति वकील और मध्यस्थ',
+      'dir_sub': 'अनुभव और अभ्यास क्षेत्रों के आधार पर प्रमाणित संपत्ति विशेषज्ञों को खोजें।',
+      'lbl_senior_adv': 'वरिष्ठ संपत्ति वकील',
+      'spec_revenue': 'राजस्व और अतिक्रमण विवाद',
+      'btn_consult': 'परामर्श का अनुरोध करें',
+      'lbl_rera_consult': 'रेरा सलाहकार',
+      'spec_rera': 'बिल्डर और रेरा विवाद',
+      'lbl_civil_mediator': 'दीवानी और उत्तराधिकार मध्यस्थ',
+      'spec_partition': 'विभाजन और उत्तराधिकार',
+      'lbl_rent_expert': 'किराया नियंत्रण विशेषज्ञ',
+      'spec_rent': 'किराएदारी और बेदखली विवाद',
+      'roadmap_label': 'जो बन चुका है बनाम भविष्य की योजना',
+      'roadmap_head': 'परियोजना की रूपरेखा',
+      'roadmap_sub': 'पोर्टफोलियो परियोजना के रूप में निर्मित - उद्देश्यपूर्ण ढंग से तैयार।',
+      'road_item_1': 'विवाद-से-प्राधिकरण विज़ार्ड',
+      'road_desc_1': 'भारत-सामान्य मार्गदर्शन के साथ अतिक्रमण, उत्तराधिकार, किराएदारी और बिल्डर/रेरा विवादों को कवर करता है। अब स्थानीय जिला चयनकर्ता और दृश्य प्रवाह चार्ट का समर्थन करता है।',
+      'road_item_2': 'पारिवारिक वृक्ष और विभाजन शेयर कैलकुलेटर',
+      'road_desc_2': 'हिंदू उत्तराधिकार श्रेणी I कानूनों के अनुसार वारिसों का मानचित्र और स्वचालित विभाजन शेयर गणना।',
+      'road_item_3': 'सरकारी-शैली लॉगिन (आधार और ओटीपी)',
+      'road_desc_3': 'सत्यापित भूमि खोज के लिए सुरक्षित भारतीय डेटाबेस कनेक्शन का अनुकरण करने वाला एक मॉक ओटीपी पोर्टल।',
+      'road_item_4': 'भूमि मूल्यांकन और उपग्रह मानचित्र डैशबोर्ड',
+      'road_desc_4': 'सर्किल दरों और अनुकूलित स्लाइडर परिवर्तनों के आधार पर भूलेख डेटाबेस से स्वचालित भूमि रिकॉर्ड पुनर्प्राप्ति।',
+      'road_item_5': 'भूमि कानूनी गतिविधि अलर्ट फीड',
+      'road_desc_5': 'आपके सर्वे संख्या के खिलाफ पंजीकृत हालिया कानूनी या प्रशासनिक कार्यों के बारे में लाइव सूचनाएं।',
+      'road_item_6': 'हिंदी अनुवाद टॉगल और एआई भाषा अनुकूलन',
+      'road_desc_6': 'अनुवादित यूआई और जेमिनी एआई द्वारा हिंदी में प्रतिक्रियाओं सहित पूर्ण बहुभाषी प्रणाली।',
+      'modal_auth_title': 'राष्ट्रीय भूमि रजिस्ट्री पोर्टल',
+      'modal_auth_sub': 'भारत सरकार · रजिस्ट्री कार्यालय',
+      'lbl_modal_name': 'पूरा नाम (भूमि अभिलेखों के अनुसार)',
+      'lbl_modal_aadhaar': 'आधार कार्ड संख्या (12 अंक)',
+      'lbl_modal_mobile': 'पंजीकृत मोबाइल संख्या (10 अंक)',
+      'btn_request_otp': 'सुरक्षा ओटीपी का अनुरोध करें',
+      'otp_sent_msg': 'पंजीकृत मोबाइल नंबर पर ओटीपी सफलतापूर्वक भेजा गया।',
+      'lbl_modal_otp': '6-अंकों का ओटीपी दर्ज करें',
+      'btn_verify_signin': 'सत्यापित करें और साइन इन करें',
+      'modal_disclaimer': 'यह भूमि सहायक विवाद समाधान पोर्टल के लिए एक आधिकारिक डेमो है। सूचना प्रौद्योगिकी अधिनियम के तहत मानक गोपनीयता नीतियां लागू होती हैं।'
+    }
+  };
+
+  // Scroll triggered stamp animation
+  const stamp = document.getElementById('stampSeal');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) stamp.classList.add('stamped');
+  });
+  setTimeout(() => stamp.classList.add('stamped'), 500);
+
+  // Initialize Page
+  document.addEventListener('DOMContentLoaded', () => {
+    onStateChange();
+    renderDisputeGrid();
+    checkLocalSession();
+    updateUILanguage();
+  });
+
+  // Toggle Language Function
+  function toggleLanguage() {
+    currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+    document.getElementById('langToggle').textContent = currentLanguage === 'en' ? 'हिन्दी' : 'English';
+    updateUILanguage();
+  }
+
+  // Update UI texts based on language
+  function updateUILanguage() {
+    document.querySelectorAll('[data-translate]').forEach(el => {
+      const key = el.getAttribute('data-translate');
+      if (translations[currentLanguage] && translations[currentLanguage][key]) {
+        if (el.tagName === 'INPUT' && el.placeholder) {
+          el.placeholder = translations[currentLanguage][key];
+        } else {
+          el.innerHTML = translations[currentLanguage][key];
+        }
+      }
+    });
+
+    // Re-render components with translated options
+    renderDisputeGrid();
+    if (currentDispute) {
+      showResult();
+    }
+  }
+
+  // Handle Districts based on State select
+  function onStateChange() {
+    const state = document.getElementById('stateSelect').value;
+    activeState = state;
+    const districts = stateDistricts[state];
+    const select = document.getElementById('districtSelect');
+    select.innerHTML = '';
+    districts.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      select.appendChild(opt);
+    });
+    activeDistrict = districts[0];
+  }
+
+  // ---------------- Wizard data with Legal Statutes & Procedure Steps ----------------
+  const disputes = [
+    {
+      id: 'boundary',
+      name: 'Boundary / Encroachment',
+      nameHi: 'सीमा / अतिक्रमण',
+      desc: 'Neighbour built over your land, unclear boundary lines',
+      descHi: 'पड़ोसी ने आपकी भूमि पर निर्माण कर लिया है, सीमा रेखाएं स्पष्ट नहीं हैं',
+      questions: [
+        {
+          q: 'Has anyone built a permanent structure (wall, room) on the disputed land?',
+          qHi: 'क्या किसी ने विवादित भूमि पर स्थायी संरचना (दीवार, कमरा) का निर्माण किया है?',
+          options: ['Yes', 'No, just informal use'],
+          optionsHi: ['हाँ', 'नहीं, केवल अनौपचारिक उपयोग']
+        }
+      ],
+      result: (answers) => {
+        const isYes = answers[0] === 'Yes' || answers[0] === 'हाँ';
+        return {
+          title: 'Apply for Boundary Demarcation under the Land Revenue Code',
+          titleHi: 'भूमि राजस्व संहिता के तहत सीमा सीमांकन के लिए आवेदन करें',
+          body: isYes 
+            ? 'For permanent encroachment, your first legal remedy is securing an official government boundary measurement. This forms the absolute evidence needed for subsequent Civil suits under Section 5 & 6 of the Specific Relief Act, 1963.'
+            : 'For minor or informal encroachment, you should request an official boundary demarcation to establish clear titles on record, avoiding long civil court trials.',
+          bodyHi: isYes 
+            ? 'स्थायी अतिक्रमण के लिए, आपका पहला कानूनी उपाय आधिकारिक सरकारी सीमा माप सुरक्षित करना है। यह विशिष्ट राहत अधिनियम, 1963 की धारा 5 और 6 के तहत बाद के सिविल मुकदमों के लिए आवश्यक पूर्ण साक्ष्य बनता है।'
+            : 'मामूली या अनौपचारिक अतिक्रमण के लिए, आपको रिकॉर्ड पर स्पष्ट स्वत्व स्थापित करने के लिए आधिकारिक सीमा सीमांकन का अनुरोध करना चाहिए, जिससे लंबे दीवानी अदालती मुकदमों से बचा जा सके।',
+          list: [
+            'Submit Form 1A to the Tehsildar (demarcation request) under the local Land Revenue Act.',
+            'Procure updated land records (RoR, Khasra, Jamabandi) to submit as evidence.',
+            'Wait for the Circle Officer/Surveyor to issue notice to adjoining owners.',
+            'If the surveyor confirms encroachment and neighbor refuses to clear, file a Civil Suit for Recovery of Possession under Section 5 of the Specific Relief Act.'
+          ],
+          listHi: [
+            'स्थानीय भूमि राजस्व अधिनियम के तहत तहसीलदार को फॉर्म 1ए (सीमांकन अनुरोध) जमा करें।',
+            'साक्ष्य के रूप में जमा करने के लिए अद्यतन भूमि रिकॉर्ड (खसरा, जमाबंदी) प्राप्त करें।',
+            'सर्किल अधिकारी/सर्वेक्षक द्वारा पड़ोसी भू-स्वामियों को नोटिस जारी करने की प्रतीक्षा करें।',
+            'यदि सर्वेक्षक अतिक्रमण की पुष्टि करता है और पड़ोसी इसे हटाने से इनकार करता है, तो विशिष्ट राहत अधिनियम की धारा 5 के तहत कब्जा वापस पाने के लिए दीवानी मुकदमा दायर करें।'
+          ],
+          flow: [
+            { title: 'Application', titleHi: 'आवेदन', desc: 'File Demarcation request with Tehsildar', descHi: 'तहसीलदार के पास सीमांकन आवेदन जमा करें' },
+            { title: 'Survey Notice', titleHi: 'सर्वे नोटिस', desc: 'Notice served to adjacent landowners', descHi: 'पड़ोसी भू-स्वामियों को नोटिस जारी किया जाता है' },
+            { title: 'Field Measurement', titleHi: 'क्षेत्र माप', desc: 'Revenue Surveyor marks boundaries', descHi: 'राजस्व सर्वेक्षक द्वारा सीमाओं का अंकन' },
+            { title: 'Enforcement / Suit', titleHi: 'प्रवर्तन / वाद', desc: 'Eviction order or Specific Relief Act suit', descHi: 'बेदखली आदेश या विशिष्ट राहत अधिनियम के तहत सिविल वाद' }
+          ]
+        };
+      }
+    },
+    {
+      id: 'inheritance',
+      name: 'Inheritance / Partition',
+      nameHi: 'उत्तराधिकार / विभाजन',
+      desc: 'Disagreement between family members over inherited land',
+      descHi: 'विरासत में मिली भूमि को लेकर परिवार के सदस्यों के बीच असहमति',
+      questions: [
+        {
+          q: 'Is there a registered Will?',
+          qHi: 'क्या कोई पंजीकृत वसीयत है?',
+          options: ['Yes', 'No', 'Not sure'],
+          optionsHi: ['हाँ', 'नहीं', 'पक्का नहीं']
+        }
+      ],
+      result: (answers) => {
+        const hasWill = answers[0] === 'Yes' || answers[0] === 'हाँ';
+        return {
+          title: hasWill ? 'Execute Will / Apply for Probate under Succession Act' : 'Apply for Legal Heir Certificate & Mutation',
+          titleHi: hasWill ? 'उत्तराधिकार अधिनियम के तहत वसीयत निष्पादित करें / प्रोबेट लागू करें' : 'कानूनी वारिस प्रमाण पत्र और दाखिल-खारिज के लिए आवेदन करें',
+          body: hasWill
+            ? 'Since a registered Will exists, the executor must execute its provisions. In presidency towns (like Mumbai, Chennai, Kolkata), a Probate certificate must be obtained from a Civil Court under Section 213 of the Indian Succession Act, 1925.'
+            : 'Without a Will, inheritance is governed by intestate rules. For Hindus, shares are divided equally among Class I heirs under Section 8 of the Hindu Succession Act, 1956. You must document this via a Legal Heir certificate first.',
+          bodyHi: hasWill
+            ? 'चूंकि एक पंजीकृत वसीयत मौजूद है, इसलिए निष्पादक को इसके प्रावधानों को लागू करना होगा। प्रेसीडेंसी शहरों (जैसे मुंबई, चेन्नई, कोलकाता) में, भारतीय उत्तराधिकार अधिनियम, 1925 की धारा 213 के तहत सिविल कोर्ट से प्रोबेट प्रमाणपत्र प्राप्त करना होगा।'
+            : 'बिना वसीयत के, उत्तराधिकार निर्वसीयत नियमों द्वारा शासित होता है। हिंदुओं के लिए, हिंदू उत्तराधिकार अधिनियम, 1956 की धारा 8 के तहत श्रेणी I के वारिसों के बीच शेयर समान रूप से विभाजित किए जाते हैं। आपको इसे पहले कानूनी वारिस प्रमाण पत्र के माध्यम से दर्ज करना होगा।',
+          list: [
+            hasWill ? 'Apply for Probate of the Will in competent Civil Court.' : 'Submit application for Legal Heir Certificate at the local Revenue/Tehsil office.',
+            'Apply for Land Mutation ( दाखिल-खारिज ) at the Circle Office to update revenue records.',
+            'If siblings contest, execute a registered Family Settlement Deed to avoid a Partition Suit under Section 54 of Civil Procedure Code.'
+          ],
+          listHi: [
+            hasWill ? 'सक्षम दीवानी न्यायालय में वसीयत के प्रोबेट के लिए आवेदन करें।' : 'स्थानीय राजस्व/तहसील कार्यालय में कानूनी वारिस प्रमाण पत्र के लिए आवेदन जमा करें।',
+            'राजस्व रिकॉर्ड को अद्यतन करने के लिए अंचल कार्यालय में भूमि दाखिल-खारिज (दाखिल-खारिज) के लिए आवेदन करें।',
+            'यदि भाई-बहन विरोध करते हैं, तो दीवानी प्रक्रिया संहिता की धारा 54 के तहत विभाजन के मुकदमे से बचने के लिए पंजीकृत पारिवारिक बंदोबस्त विलेख निष्पादित करें।'
+          ],
+          flow: [
+            { title: 'Heirship Proof', titleHi: 'उत्तराधिकार प्रमाण', desc: 'Secure Legal Heir Certificate or Probate', descHi: 'वारिस प्रमाण पत्र या प्रोबेट प्राप्त करें' },
+            { title: 'Mutation File', titleHi: 'दाखिल-खारिज', desc: 'Apply to Tehsildar to update owner name', descHi: 'मालिक का नाम बदलने के लिए तहसीलदार को आवेदन' },
+            { title: 'Public Notice', titleHi: 'सार्वजनिक सूचना', desc: '30-day notice for objections', descHi: 'आपत्तियों के लिए 30-दिवसीय सार्वजनिक नोटिस' },
+            { title: 'Record Update', titleHi: 'अभिलेख अद्यतन', desc: 'Name updated in Land revenue register', descHi: 'राजस्व रिकॉर्ड में नाम सफलतापूर्वक बदला जाता है' }
+          ]
+        };
+      }
+    },
+    {
+      id: 'tenant',
+      name: 'Tenant–Landlord',
+      nameHi: 'किरायेदार-मकान मालिक',
+      desc: 'Eviction, rent disputes, or possession issues',
+      descHi: 'बेदखली, किराया विवाद, या कब्जे के मुद्दे',
+      questions: [
+        {
+          q: 'Has a formal eviction notice been sent?',
+          qHi: 'क्या औपचारिक बेदखली नोटिस भेजा गया है?',
+          options: ['Yes', 'No'],
+          optionsHi: ['हाँ', 'नहीं']
+        }
+      ],
+      result: (answers) => {
+        const noticeSent = answers[0] === 'Yes' || answers[0] === 'हाँ';
+        return {
+          title: 'Petition the Rent Control Court under State Rent Control Act',
+          titleHi: 'राज्य किराया नियंत्रण अधिनियम के तहत किराया नियंत्रण न्यायालय में याचिका दायर करें',
+          body: 'Tenancy disputes are strictly governed by state legislation (e.g. Maharashtra Rent Control Act, 1999). Landlords cannot take forcible possession and must follow due process of law under the Rent Control Authority to avoid penal liabilities.',
+          bodyHi: 'किरायेदारी विवादों को राज्य विधानों (जैसे महाराष्ट्र किराया नियंत्रण अधिनियम, 1999) द्वारा नियंत्रित किया जाता है। मकान मालिक जबरन कब्जा नहीं ले सकते हैं और उन्हें दंडात्मक देनदारियों से बचने के लिए किराया नियंत्रण प्राधिकरण के तहत कानून की उचित प्रक्रिया का पालन करना चाहिए।',
+          list: [
+            noticeSent ? 'File an eviction petition in the Rent Control Court on valid grounds (non-payment, bona fide need).' : 'Draft and serve a legal notice via Registered Post giving 15-30 days to clear dues/vacate.',
+            'Register the Tenancy Agreement as mandated by the Model Tenancy Act to ensure legal enforceability.',
+            'Keep all transaction receipts and communications documented.'
+          ],
+          listHi: [
+            noticeSent ? 'वैध आधार पर (गैर-भुगतान, सद्भावना आवश्यकता) किराया नियंत्रण न्यायालय में बेदखली याचिका दायर करें।' : 'पंजीकृत डाक के माध्यम से बकाया राशि चुकाने/खाली करने के लिए 15-30 दिनों का समय देते हुए कानूनी नोटिस का मसौदा तैयार करें और भेजें।',
+            'कानूनी प्रवर्तनीयता सुनिश्चित करने के लिए मॉडल टेनेंसी एक्ट द्वारा अनिवार्य किरायेदारी समझौते को पंजीकृत करें।',
+            'सभी लेनदेन रसीदों और संचारों को लिखित रूप में सुरक्षित रखें।'
+          ],
+          flow: [
+            { title: 'Legal Notice', titleHi: 'कानूनी नोटिस', desc: 'Serve formal notice to tenant', descHi: 'किरायेदार को औपचारिक नोटिस भेजें' },
+            { title: 'Rent Petition', titleHi: 'किराया याचिका', desc: 'File eviction petition with Rent Controller', descHi: 'किराया नियंत्रक के पास बेदखली याचिका दायर करें' },
+            { title: 'Trial & Hearings', titleHi: 'परीक्षण और सुनवाई', desc: 'Present lease deed and rental ledger', descHi: 'पट्टा विलेख और किराया बहीखाता प्रस्तुत करें' },
+            { title: 'Eviction Order', titleHi: 'बेदखली आदेश', desc: 'Court orders tenant eviction if grounds met', descHi: 'अदालत किरायेदार को खाली करने का आदेश देती है' }
+          ]
+        };
+      }
+    },
+    {
+      id: 'builder',
+      name: 'Builder / RERA',
+      nameHi: 'बिल्डर / रेरा',
+      desc: 'Delayed possession, builder not honouring agreement',
+      descHi: 'कब्जे में देरी, बिल्डर समझौते का सम्मान नहीं कर रहा है',
+      questions: [
+        {
+          q: 'Is the project registered with RERA?',
+          qHi: 'क्या परियोजना RERA के साथ पंजीकृत है?',
+          options: ['Yes', 'No / Not sure'],
+          optionsHi: ['हाँ', 'नहीं / पक्का नहीं']
+        }
+      ],
+      result: (answers) => {
+        const isRera = answers[0] === 'Yes' || answers[0] === 'हाँ';
+        return {
+          title: isRera ? 'File Complaint under Section 31 of RERA Act 2016' : 'File Complaint in Consumer Forum or Civil Court',
+          titleHi: isRera ? 'रेरा अधिनियम 2016 की धारा 31 के तहत शिकायत दर्ज करें' : 'उपभोक्ता फोरम या सिविल कोर्ट में शिकायत दर्ज करें',
+          body: isRera
+            ? 'For RERA-registered projects, you have access to a fast-track tribunal. Section 18 of RERA mandates that builders must pay interest for delay, or refund the total amount with interest if you choose to withdraw.'
+            : 'If the project is unregistered, you can approach the State Consumer Disputes Redressal Commission (NCDRC) or file a Civil suit for specific performance under the Specific Relief Act.',
+          bodyHi: isRera
+            ? 'रेरा-पंजीकृत परियोजनाओं के लिए, आपके पास फास्ट-ट्रैक ट्रिब्यूनल तक पहुंच है। रेरा की धारा 18 अनिवार्य करती है कि बिल्डरों को देरी के लिए ब्याज देना होगा, या यदि आप वापस लेने का विकल्प चुनते हैं तो ब्याज सहित कुल राशि वापस करनी होगी।'
+            : 'यदि परियोजना अपंजीकृत है, तो आप राज्य उपभोक्ता विवाद निवारण आयोग (NCDRC) से संपर्क कर सकते हैं या विशिष्ट राहत अधिनियम के तहत विशिष्ट प्रदर्शन के लिए एक दीवानी मुकदमा दायर कर सकते हैं।',
+          list: [
+            isRera ? 'File Form M (complaint) online on the state RERA portal (e.g. MahaRERA).' : 'Verify registration requirement status. Builders delaying unregistered projects are liable to 10% penalty.',
+            'Submit Builder-Buyer Agreement (BBA) and proof of payments.',
+            'Request refund, possession interest, or compensation before the Adjudicating Officer.'
+          ],
+          listHi: [
+            isRera ? 'राज्य रेरा पोर्टल (जैसे महारेरा) पर ऑनलाइन फॉर्म एम (शिकायत) दर्ज करें।' : 'पंजीकरण आवश्यकता की स्थिति सत्यापित करें। अपंजीकृत परियोजनाओं में देरी करने वाले बिल्डर 10% जुर्माने के पात्र हैं।',
+            'बिल्डर-बायर्स एग्रीमेंट (BBA) और भुगतान का प्रमाण जमा करें।',
+            'निर्णायक अधिकारी के समक्ष धनवापसी, कब्जे के ब्याज या मुआवजे का अनुरोध करें।'
+          ],
+          flow: [
+            { title: 'Online Form M', titleHi: 'ऑनलाइन फॉर्म एम', desc: 'File complaint on state RERA website', descHi: 'राज्य रेरा वेबसाइट पर शिकायत दर्ज करें' },
+            { title: 'Notice Served', titleHi: 'नोटिस जारी', desc: 'Builder requested for response', descHi: 'बिल्डर को जवाब देने का नोटिस भेजा जाता है' },
+            { title: 'RERA Hearing', titleHi: 'रेरा सुनवाई', desc: 'Hearing before Adjudicating Officer', descHi: 'निर्णायक अधिकारी के समक्ष सुनवाई' },
+            { title: 'Execution Order', titleHi: 'निष्पादन आदेश', desc: 'Order of refund, interest or penalty', descHi: 'धनवापसी, ब्याज या जुर्माने का आदेश' }
+          ]
+        };
+      }
+    }
+  ];
+
+  // Render Category Cards
+  function renderDisputeGrid() {
+    const grid = document.getElementById('disputeGrid');
+    grid.innerHTML = '';
+    disputes.forEach(d => {
+      const card = document.createElement('button');
+      card.className = 'dispute-card';
+      const nameText = currentLanguage === 'hi' ? d.nameHi : d.name;
+      const descText = currentLanguage === 'hi' ? d.descHi : d.desc;
+      card.innerHTML = `<div class="name">${nameText}</div><div class="desc">${descText}</div>`;
+      card.onclick = () => startQuestions(d);
+      grid.appendChild(card);
+    });
+  }
+
+  let currentDispute = null;
+  let currentAnswers = [];
+
+  function startQuestions(dispute) {
+    currentDispute = dispute;
+    currentAnswers = [];
+    document.getElementById('wizardStage1').style.display = 'none';
+    document.getElementById('wizardStage2').style.display = 'block';
+    renderQuestion(0);
+  }
+
+  function renderQuestion(index) {
+    const qa = document.getElementById('questionArea');
+    qa.innerHTML = '';
+    document.getElementById('resultCard').classList.remove('show');
+
+    if (index >= currentDispute.questions.length) {
+      showResult();
+      return;
+    }
+    const q = currentDispute.questions[index];
+    const qText = currentLanguage === 'hi' ? q.qHi : q.q;
+    const optionsArray = currentLanguage === 'hi' ? q.optionsHi : q.options;
+
+    const block = document.createElement('div');
+    block.className = 'qblock';
+    const label = document.createElement('label');
+    label.textContent = qText;
+    block.appendChild(label);
+    const row = document.createElement('div');
+    row.className = 'option-row';
+    optionsArray.forEach((opt, oIdx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = opt;
+      btn.onclick = () => {
+        // Track the option in English internally for logic mapping
+        currentAnswers[index] = q.options[oIdx];
+        renderQuestion(index + 1);
+      };
+      row.appendChild(btn);
+    });
+    block.appendChild(row);
+    qa.appendChild(block);
+  }
+
+  function showResult() {
+    const res = currentDispute.result(currentAnswers);
+    
+    const titleText = currentLanguage === 'hi' ? res.titleHi : res.title;
+    const bodyText = currentLanguage === 'hi' ? res.bodyHi : res.body;
+    const listItems = currentLanguage === 'hi' ? res.listHi : res.list;
+
+    document.getElementById('resultTitle').textContent = titleText;
+    document.getElementById('resultBody').textContent = bodyText;
+    
+    const list = document.getElementById('resultList');
+    list.innerHTML = '';
+    listItems.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+
+    // Render Procedure Flowchart
+    const flowContainer = document.getElementById('procedureFlow');
+    flowContainer.innerHTML = `<div class="flow-title">${currentLanguage === 'hi' ? 'प्रक्रिया प्रवाह आरेख' : 'Administrative Procedure Flow'}</div>`;
+    const flowStepsBox = document.createElement('div');
+    flowStepsBox.className = 'flow-steps';
+
+    res.flow.forEach((step, idx) => {
+      const sCard = document.createElement('div');
+      sCard.className = 'flow-step-card';
+      const sTitle = currentLanguage === 'hi' ? step.titleHi : step.title;
+      const sDesc = currentLanguage === 'hi' ? step.descHi : step.desc;
+
+      sCard.innerHTML = `
+        <div class="flow-step-num">${idx + 1}</div>
+        <div class="flow-step-title">${sTitle}</div>
+        <div class="flow-step-desc">${sDesc}</div>
+      `;
+      flowStepsBox.appendChild(sCard);
+    });
+
+    flowContainer.appendChild(flowStepsBox);
+    document.getElementById('resultCard').classList.add('show');
+    document.getElementById('questionArea').innerHTML = '';
+  }
+
+  function resetWizard() {
+    document.getElementById('wizardStage1').style.display = 'block';
+    document.getElementById('wizardStage2').style.display = 'none';
+    document.getElementById('resultCard').classList.remove('show');
+    currentDispute = null;
+  }
+
+  // ---------------- Gating and Authentication Functions ----------------
+  let activeAuthTab = 'signin';
+
+  function switchAuthTab(tab) {
+    activeAuthTab = tab;
+    
+    // Toggle active classes on tabs
+    document.getElementById('tabSignIn').classList.toggle('active', tab === 'signin');
+    document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
+    
+    // Show/hide Name field
+    document.getElementById('formGroupNameGroup').style.display = tab === 'register' ? 'block' : 'none';
+    
+    // Reset OTP panel states
+    document.getElementById('authCredentialsPanel').style.display = 'block';
+    document.getElementById('authOtpPanel').style.display = 'none';
+    document.getElementById('authName').value = '';
+    document.getElementById('authAadhaar').value = '';
+    document.getElementById('authMobile').value = '';
+    document.getElementById('authOtpCode').value = '';
+  }
+
+  function openAuthModal() {
+    document.getElementById('authModal').classList.add('show');
+    switchAuthTab('signin');
+  }
+
+  function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('show');
+  }
+
+  // Simulated OTP sending
+  async function sendAuthOtp() {
+    const name = document.getElementById('authName').value.trim();
+    const aadhaar = document.getElementById('authAadhaar').value.trim();
+    const mobile = document.getElementById('authMobile').value.trim();
+
+    if (activeAuthTab === 'register' && !name) {
+      alert('Please fill in your name for registration.');
+      return;
+    }
+    if (!aadhaar || !mobile) {
+      alert('Please fill in all identity fields.');
+      return;
+    }
+    if (aadhaar.length !== 12 || isNaN(aadhaar)) {
+      alert('Aadhaar must be exactly 12 digits.');
+      return;
+    }
+    if (mobile.length !== 10 || isNaN(mobile)) {
+      alert('Mobile must be exactly 10 digits.');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/auth/otp/send`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, aadhaar, mobile, isRegister: activeAuthTab === 'register' })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      document.getElementById('authCredentialsPanel').style.display = 'none';
+      document.getElementById('authOtpPanel').style.display = 'block';
+      document.getElementById('otpInfoText').textContent = currentLanguage === 'hi' 
+        ? `ओटीपी सफलतापूर्वक +91 XXXXX-XX${mobile.slice(-3)} पर भेजा गया।`
+        : `OTP sent successfully to registered mobile number +91 XXXXX-XX${mobile.slice(-3)}.`;
+    } catch (err) {
+      alert('Auth Error: ' + err.message);
+    }
+  }
+
+  // Verify OTP
+  async function verifyAuthOtp() {
+    const name = document.getElementById('authName').value.trim();
+    const aadhaar = document.getElementById('authAadhaar').value.trim();
+    const mobile = document.getElementById('authMobile').value.trim();
+    const otp = document.getElementById('authOtpCode').value.trim();
+    const isRegister = activeAuthTab === 'register';
+
+    if (!otp) {
+      alert('Please enter the 6-digit OTP.');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/auth/otp/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, aadhaar, mobile, otp, isRegister })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      currentUserToken = data.token;
+      currentUserData = data.user;
+      
+      // Save credentials in Session Storage for persistency
+      sessionStorage.setItem('bhoomi_token', data.token);
+      sessionStorage.setItem('last_activity', Date.now());
+
+      closeAuthModal();
+      unlockDashboard(data.user, data.session);
+      startIdleMonitoring();
+    } catch (err) {
+      alert('Verification Failed: ' + err.message);
+    }
+  }
+
+  // Check Session storage on load
+  let idleTimer = null;
+
+  function resetIdleTimer() {
+    if (!currentUserToken) return;
+    sessionStorage.setItem('last_activity', Date.now());
+  }
+
+  function startIdleMonitoring() {
+    if (idleTimer) clearInterval(idleTimer);
+    
+    if (!sessionStorage.getItem('last_activity')) {
+      sessionStorage.setItem('last_activity', Date.now());
+    }
+
+    const events = ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'];
+    events.forEach(evt => {
+      window.addEventListener(evt, resetIdleTimer, { passive: true });
+    });
+
+    idleTimer = setInterval(() => {
+      if (!currentUserToken) {
+        clearInterval(idleTimer);
+        return;
+      }
+      const lastActive = parseInt(sessionStorage.getItem('last_activity') || '0', 10);
+      const now = Date.now();
+      const diff = now - lastActive;
+      const fiveMinutes = 5 * 60 * 1000;
+
+      if (diff >= fiveMinutes) {
+        console.log('Idle timeout reached (5 minutes). Logging out...');
+        handleLogout();
+        alert(currentLanguage === 'hi' ? 'निष्क्रियता के 5 मिनट के बाद आपको लॉग आउट कर दिया गया है।' : 'You have been logged out due to 5 minutes of inactivity.');
+      }
+    }, 5000);
+  }
+
+  function stopIdleMonitoring() {
+    if (idleTimer) {
+      clearInterval(idleTimer);
+      idleTimer = null;
+    }
+    const events = ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'];
+    events.forEach(evt => {
+      window.removeEventListener(evt, resetIdleTimer);
+    });
+    sessionStorage.removeItem('last_activity');
+  }
+
+  async function checkLocalSession() {
+    const token = sessionStorage.getItem('bhoomi_token');
+    if (!token) return;
+
+    const lastActive = parseInt(sessionStorage.getItem('last_activity') || '0', 10);
+    const now = Date.now();
+    if (lastActive && (now - lastActive >= 5 * 60 * 1000)) {
+      sessionStorage.removeItem('bhoomi_token');
+      sessionStorage.removeItem('last_activity');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/registry/load`, {
+        method: 'GET',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        currentUserToken = token;
+        currentUserData = data.user;
+        unlockDashboard(data.user, data.session);
+        startIdleMonitoring();
+      } else {
+        sessionStorage.removeItem('bhoomi_token');
+        sessionStorage.removeItem('last_activity');
+      }
+    } catch (err) {
+      console.error('Session restoration failed:', err);
+    }
+  }
+
+  // Unlock dashboard elements
+  function unlockDashboard(user, session) {
+    // Hide Gate Shields
+    document.getElementById('dashboardShield').style.display = 'none';
+    document.getElementById('chatShield').style.display = 'none';
+    document.getElementById('directoryShield').style.display = 'none';
+
+    // Show Header Profile
+    document.getElementById('authHeaderBtn').style.display = 'none';
+    document.getElementById('userHeaderBadge').style.display = 'flex';
+    document.getElementById('headerName').textContent = user.name;
+
+    // Populate profile details
+    document.getElementById('profileName').textContent = user.name;
+    document.getElementById('profileAadhaar').textContent = user.aadhaar;
+    document.getElementById('profileMobile').textContent = user.mobile;
+    document.getElementById('profileSession').innerHTML = `
+      <strong>Session Started:</strong> ${new Date(session.sessionCreated).toLocaleTimeString()} | 
+      <strong>IP:</strong> ${session.ip} | 
+      <strong>Browser:</strong> Chrome / Edge Secure Context
+    `;
+
+    // Populate alerts feed
+    renderAlerts(user.notifications);
+
+    // Load land records if fetched previously
+    if (user.landRecord) {
+      // Auto-fill land search input dropdowns (so they are ready for the user to search/fetch)
+      document.getElementById('landSearchTaluka').value = user.landRecord.taluka || '';
+      document.getElementById('landSearchVillage').value = user.landRecord.village || '';
+      document.getElementById('landSearchSurvey').value = user.landRecord.surveyNo || '';
+      
+      // Update global states matching user's registered land
+      activeState = user.landRecord.state;
+      activeDistrict = user.landRecord.district;
+
+      // Populate profile texts
+      document.getElementById('profileKhata').textContent = `${user.landRecord.taluka}, Village: ${user.landRecord.village}, Survey No: ${user.landRecord.surveyNo}`;
+      document.getElementById('profileLandArea').textContent = `${user.landRecord.areaAcres} Acres`;
+      
+      // Keep map hidden initially (do NOT preload)
+      document.getElementById('landDetailsView').classList.remove('active');
+    } else {
+      document.getElementById('landDetailsView').classList.remove('active');
+      document.getElementById('profileKhata').textContent = currentLanguage === 'hi' ? 'कोई भूमि रिकॉर्ड नहीं' : 'No parcel fetched';
+      document.getElementById('profileLandArea').textContent = '--';
+    }
+
+    // Load family tree
+    if (user.familyTree) {
+      familyTreeData = user.familyTree;
+    } else {
+      // Default node as user self
+      familyTreeData = [
+        { id: '1', name: user.name, relation: 'Self', avatar: 'male-adult', parentId: null }
+      ];
+    }
+    renderFamilyTree();
+  }
+
+  // Handle Logout
+  function handleLogout() {
+    stopIdleMonitoring();
+    sessionStorage.removeItem('bhoomi_token');
+    currentUserToken = null;
+    currentUserData = null;
+    window.location.reload();
+  }
+
+  // Render Alerts Notification Feed
+  function renderAlerts(notifications) {
+    const list = document.getElementById('alertList');
+    list.innerHTML = '';
+    notifications.forEach(n => {
+      const div = document.createElement('div');
+      div.className = `alert-item ${n.type}`;
+      div.innerHTML = `
+        <span class="alert-date">${n.date}</span>
+        <div>${n.message}</div>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  // ---------------- Fetch Land record location logic ----------------
+  async function fetchLandRecord() {
+    // Reset error banner
+    document.getElementById('landSearchError').style.display = 'none';
+
+    const taluka = document.getElementById('landSearchTaluka').value.trim();
+    const village = document.getElementById('landSearchVillage').value.trim();
+    const surveyNo = document.getElementById('landSearchSurvey').value.trim();
+
+    if (!taluka || !village || !surveyNo) {
+      alert('Please fill out village survey search fields.');
+      return;
+    }
+
+    const overlay = document.getElementById('fetchOverlay');
+    const statusText = document.getElementById('fetchStatus');
+    const logText = document.getElementById('fetchLog');
+
+    overlay.style.display = 'flex';
+    statusText.textContent = 'Connecting to State Bhulekh Registry...';
+    logText.textContent = 'Authenticating digital signatures...';
+
+    // Simulate progressive searching ticks
+    setTimeout(() => {
+      statusText.textContent = 'Accessing Taluka cadastral map database...';
+      logText.textContent = `Searching village plot boundaries for Survey No. ${surveyNo}...`;
+    }, 1200);
+
+    setTimeout(() => {
+      statusText.textContent = 'Retrieving Satellite Survey Imagery...';
+      logText.textContent = 'Compiling circle rate valuations...';
+    }, 2400);
+
+    setTimeout(async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/registry/search-land`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUserToken}`
+          },
+          body: JSON.stringify({ state: activeState, district: activeDistrict, taluka, village, surveyNo })
+        });
+
+        overlay.style.display = 'none';
+
+        if (res.status === 429) {
+          triggerSearchCooldown();
+          return;
+        }
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        currentUserData.landRecord = data.landRecord;
+        displayLandRecord(data.landRecord);
+      } catch (err) {
+        overlay.style.display = 'none';
+        
+        // Hide the active map details panel
+        document.getElementById('landDetailsView').classList.remove('active');
+        
+        // Show inline error in the box
+        const errBanner = document.getElementById('landSearchError');
+        const displayMsg = currentLanguage === 'hi' ? 'कोई रिकॉर्ड नहीं मिला।' : err.message;
+        errBanner.innerHTML = `⚠️ ${displayMsg}`;
+        errBanner.style.display = 'block';
+      }
+    }, 3600);
+  }
+
+  // Trigger search cooldown interface
+  function triggerSearchCooldown() {
+    const cooldownPanel = document.getElementById('cooldownOverlay');
+    const timerText = document.getElementById('cooldownTimer');
+    cooldownPanel.style.display = 'flex';
+    
+    let secondsLeft = 60;
+    timerText.textContent = `${secondsLeft}s`;
+
+    const interval = setInterval(() => {
+      secondsLeft--;
+      timerText.textContent = `${secondsLeft}s`;
+      if (secondsLeft <= 0) {
+        clearInterval(interval);
+        cooldownPanel.style.display = 'none';
+      }
+    }, 1000);
+  }
+
+  function displayLandRecord(land) {
+    document.getElementById('landSearchError').style.display = 'none';
+    document.getElementById('landDetailsView').classList.add('active');
+    document.getElementById('profileKhata').textContent = `${land.taluka}, Village: ${land.village}, Survey No: ${land.surveyNo}`;
+    document.getElementById('landValLocation').textContent = `${land.village}, ${land.taluka}, Dist: ${land.district}, ${land.state}`;
+    document.getElementById('valCircleRateDisplay').textContent = `₹${land.circleRate} per sq yard`;
+    document.getElementById('valSlider').value = land.areaAcres;
+    
+    // Set profile land area text
+    document.getElementById('profileLandArea').textContent = `${land.areaAcres} Acres`;
+    
+    // Auto-fill land search input boxes
+    document.getElementById('landSearchTaluka').value = land.taluka || '';
+    document.getElementById('landSearchVillage').value = land.village || '';
+    document.getElementById('landSearchSurvey').value = land.surveyNo || '';
+    
+    // Set unique satellite image per user
+    const satImg = land.satelliteImage || 'satellite_land_parcel.png';
+    document.getElementById('satelliteImg').src = satImg;
+
+    // Set legal title status
+    document.getElementById('landValStatus').textContent = land.legalStatus || 'Clear Title';
+    
+    // Default to the satellite map tab on load/fetch
+    switchLandTab('map');
+
+    updateValuation();
+  }
+
+  function switchLandTab(tabName) {
+    const mapTab = document.getElementById('landTabMap');
+    const valTab = document.getElementById('landTabValuation');
+    const btnMap = document.getElementById('tabBtnMap');
+    const btnVal = document.getElementById('tabBtnVal');
+
+    if (!mapTab || !valTab || !btnMap || !btnVal) return;
+
+    if (tabName === 'map') {
+      btnMap.classList.add('active');
+      btnVal.classList.remove('active');
+      mapTab.style.display = 'block';
+      valTab.style.display = 'none';
+    } else {
+      btnVal.classList.add('active');
+      btnMap.classList.remove('active');
+      mapTab.style.display = 'none';
+      valTab.style.display = 'block';
+    }
+  }
+
+  function updateValuation() {
+    const area = parseFloat(document.getElementById('valSlider').value);
+    document.getElementById('valSliderDisplay').textContent = `${area.toFixed(1)} Acres`;
+    
+    const land = currentUserData.landRecord;
+    if (!land) return;
+
+    const sqYards = area * 4840;
+    const totalCost = Math.round(sqYards * land.circleRate);
+    
+    document.getElementById('valEstimatedCost').textContent = '₹' + totalCost.toLocaleString('en-IN');
+  }
+
+  // ---------------- Family Tree Builder & Share logic ----------------
+  let familyTreeData = [];
+  let selectedAvatar = 'male-adult';
+
+  // Correction Modal Functions
+  function openCorrectionModal() {
+    document.getElementById('correctionModal').classList.add('show');
+    document.getElementById('corrHeirName').value = '';
+    document.getElementById('corrGrounds').value = '';
+    document.getElementById('corrFile').value = '';
+  }
+
+  function closeCorrectionModal() {
+    document.getElementById('correctionModal').classList.remove('show');
+  }
+
+  async function submitCorrectionPetition() {
+    const heirName = document.getElementById('corrHeirName').value.trim();
+    const relation = document.getElementById('corrHeirRelation').value;
+    const type = document.getElementById('corrType').value;
+    const grounds = document.getElementById('corrGrounds').value.trim();
+
+    if (!heirName) {
+      alert(currentLanguage === 'hi' ? 'कृपया वारिस का नाम भरें।' : 'Please enter the heir name.');
+      return;
+    }
+
+    const submitBtn = document.querySelector('#correctionModal .modal-btn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLanguage === 'hi' ? 'याचिका दर्ज की जा रही है...' : 'Filing Legal Petition...';
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      
+      const petitionId = 'BHOOMI-SUCC-2026-' + Math.floor(1000 + Math.random() * 9000);
+      const alertMsg = currentLanguage === 'hi'
+        ? `⚖️ संशोधन याचिका ${petitionId} (वारिस: ${heirName}) तहसीलदार कार्यालय में लंबित है।`
+        : `⚖️ Amendment Petition ${petitionId} (Heir: ${heirName}) is pending verification at Tehsildar Office.`;
+
+      if (currentUserData) {
+        if (!currentUserData.notifications) currentUserData.notifications = [];
+        currentUserData.notifications.unshift({
+          id: Date.now(),
+          type: 'warning',
+          message: alertMsg,
+          date: new Date().toISOString().slice(0, 10)
+        });
+        renderAlerts(currentUserData.notifications);
+      }
+
+      closeCorrectionModal();
+
+      alert(currentLanguage === 'hi'
+        ? `संशोधन याचिका सफलतापूर्वक दर्ज की गई!\nआवेदन संख्या: ${petitionId}\nस्थिति: समीक्षा के लिए तहसीलदार कार्यालय में लंबित।`
+        : `Correction Petition filed successfully!\nApplication ID: ${petitionId}\nStatus: Pending review at the Tehsildar's office.`);
+    }, 1500);
+  }
+
+  // Calculate Class I shares dynamically
+  function calculateShares() {
+    // Under Hindu Succession Act, Class I heirs inherit equally:
+    // They are: Widow (Spouse), Son, Daughter, Mother.
+    // Self (owner) is the base.
+    const eligibleHeirs = familyTreeData.filter(node => 
+      node.relation === 'Self' ||
+      node.relation === 'Spouse' || 
+      node.relation === 'Son' || 
+      node.relation === 'Daughter' || 
+      node.relation === 'Mother'
+    );
+
+    const count = eligibleHeirs.length;
+    familyTreeData.forEach(node => {
+      const isClassI = node.relation === 'Self' || 
+                        node.relation === 'Spouse' || 
+                        node.relation === 'Son' || 
+                        node.relation === 'Daughter' || 
+                        node.relation === 'Mother';
+      if (isClassI) {
+        node.share = `1/${count} share`;
+      } else {
+        node.share = 'Class II heir';
+      }
+    });
+  }
+
+  // Render nodes visual flowchart rows
+  function renderFamilyTree() {
+    const eldersRow = document.getElementById('treeRowElders');
+    const selfRow = document.getElementById('treeRowSelf');
+    const descendantsRow = document.getElementById('treeRowDescendants');
+
+    eldersRow.innerHTML = '';
+    selfRow.innerHTML = '';
+    descendantsRow.innerHTML = '';
+
+    calculateShares();
+
+    familyTreeData.forEach(node => {
+      const card = document.createElement('div');
+      card.className = 'tree-node';
+      card.setAttribute('data-node-id', node.id);
+
+      let avatarSvg = '';
+      if (node.avatar.includes('elder')) {
+        avatarSvg = node.avatar.includes('male') 
+          ? `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#8A7B4F"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M12 14.5L18 16L24 14.5" stroke="#1F3B4D" stroke-width="1.5"/><path d="M8 28C8 24 13 22 18 22C23 22 28 24 28 28" stroke="#FBF9F4" stroke-width="2"/></svg>`
+          : `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#8A7B4F"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><circle cx="18" cy="7" r="3" fill="#FBF9F4"/><path d="M8 28C8 24 13 22 18 22C23 22 28 24 28 28" stroke="#FBF9F4" stroke-width="2"/></svg>`;
+      } else if (node.avatar.includes('adult')) {
+        avatarSvg = node.avatar.includes('male')
+          ? `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/></svg>`
+          : `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#1F3B4D"/><circle cx="18" cy="14" r="6" fill="#FBF9F4"/><path d="M8 28C8 23 13 21 18 21C23 21 28 23 28 28" stroke="#FBF9F4" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="8" r="2" fill="#A13D3D"/></svg>`;
+      } else {
+        avatarSvg = node.avatar.includes('boy')
+          ? `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#3E5A6C"/><circle cx="18" cy="15" r="5" fill="#FBF9F4"/><path d="M10 28C10 24 14 23 18 23C22 23 26 24 26 28" stroke="#FBF9F4" stroke-width="2"/></svg>`
+          : `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="18" r="18" fill="#3E5A6C"/><circle cx="18" cy="15" r="5" fill="#FBF9F4"/><path d="M10 28C10 24 14 23 18 23C22 23 26 24 26 28" stroke="#FBF9F4" stroke-width="2"/><path d="M14 11L18 13L22 11" stroke="#A13D3D" stroke-width="1.5"/></svg>`;
+      }
+
+      const relationText = currentLanguage === 'hi' ? translateRelation(node.relation) : node.relation;
+
+      card.innerHTML = `
+        <div class="node-avatar">${avatarSvg}</div>
+        <div class="node-name">${node.name}</div>
+        <div class="node-relation">${relationText}</div>
+        <div class="node-share">${node.share || ''}</div>
+      `;
+
+      if (node.relation === 'Father' || node.relation === 'Mother') {
+        eldersRow.appendChild(card);
+      } else if (node.relation === 'Self' || node.relation === 'Spouse') {
+        selfRow.appendChild(card);
+      } else {
+        descendantsRow.appendChild(card);
+      }
+    });
+
+    // Redraw SVG connection lines after DOM renders
+    setTimeout(drawTreeConnections, 100);
+  }
+
+  function translateRelation(rel) {
+    const map = {
+      'Self': 'स्वयं (मालिक)',
+      'Spouse': 'जीवनसाथी',
+      'Son': 'पुत्र',
+      'Daughter': 'पुत्री',
+      'Father': 'पिता',
+      'Mother': 'माता'
+    };
+    return map[rel] || rel;
+  }
+
+  // Draw lines between nodes
+  function drawTreeConnections() {
+    const canvas = document.getElementById('treeSvgCanvas');
+    canvas.innerHTML = '';
+    const workspace = document.querySelector('.tree-workspace');
+    const wRect = workspace.getBoundingClientRect();
+    
+    canvas.setAttribute('width', workspace.scrollWidth);
+    canvas.setAttribute('height', workspace.scrollHeight);
+
+    const selfNode = familyTreeData.find(n => n.relation === 'Self');
+    if (!selfNode) return;
+
+    const selfEl = document.querySelector(`[data-node-id="${selfNode.id}"]`);
+    if (!selfEl) return;
+
+    const selfRect = selfEl.getBoundingClientRect();
+    const selfX = (selfRect.left + selfRect.right) / 2 - wRect.left + workspace.scrollLeft;
+    const selfY = (selfRect.top + selfRect.bottom) / 2 - wRect.top + workspace.scrollTop;
+
+    familyTreeData.forEach(node => {
+      if (node.id === selfNode.id) return;
+      const childEl = document.querySelector(`[data-node-id="${node.id}"]`);
+      if (!childEl) return;
+
+      const childRect = childEl.getBoundingClientRect();
+      const childX = (childRect.left + childRect.right) / 2 - wRect.left + workspace.scrollLeft;
+      const childY = (childRect.top + childRect.bottom) / 2 - wRect.top + workspace.scrollTop;
+
+      // Draw connection lines
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', selfX);
+      line.setAttribute('y1', selfY);
+      line.setAttribute('x2', childX);
+      line.setAttribute('y2', childY);
+      line.setAttribute('stroke', '#1F3B4D');
+      line.setAttribute('stroke-width', '1.5');
+      line.setAttribute('stroke-dasharray', '4,4');
+      canvas.appendChild(line);
+    });
+  }
+
+  // Re-draw connections on window resize
+  window.addEventListener('resize', drawTreeConnections);
+
+  // Save full registry (Tree and Land data)
+  async function saveFullRegistry() {
+    if (!currentUserToken) return;
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/registry/save`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUserToken}`
+        },
+        body: JSON.stringify({
+          familyTree: familyTreeData,
+          landRecord: currentUserData.landRecord
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      alert(currentLanguage === 'hi' ? 'रजिस्ट्री सफलतापूर्वक सहेज ली गई है!' : 'Registry successfully saved to state database!');
+    } catch (err) {
+      alert('Save Error: ' + err.message);
+    }
+  }
+
+  // ---------------- Chat Assistant: calls the backend ----------------
+  async function sendChat() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const win = document.getElementById('chatWindow');
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'msg user';
+    userMsg.innerHTML = `<div class="who">${currentLanguage === 'hi' ? 'आप' : 'You'}</div><div>${escapeHtml(text)}</div>`;
+    win.appendChild(userMsg);
+    input.value = '';
+    win.scrollTop = win.scrollHeight;
+
+    const thinkingMsg = document.createElement('div');
+    thinkingMsg.className = 'msg';
+    thinkingMsg.innerHTML = `<div class="who">Assistant</div><div>${currentLanguage === 'hi' ? 'विचार कर रहा हूँ…' : 'Thinking…'}</div>`;
+    win.appendChild(thinkingMsg);
+    win.scrollTop = win.scrollHeight;
+
+    let reply;
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUserToken}`
+        },
+        body: JSON.stringify({ message: text, language: currentLanguage })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      reply = data.answer;
+    } catch (err) {
+      reply = `Error: ${err.message}`;
+    }
+
+    thinkingMsg.innerHTML = `<div class="who">Assistant</div><div>${parseMarkdown(reply)}</div>`;
+    win.scrollTop = win.scrollHeight;
+  }
+
+  document.getElementById('chatInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendChat();
+  });
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function parseMarkdown(text) {
+    if (!text) return '';
+    
+    const lines = text.split(/\r?\n/g);
+    let html = '';
+    let inList = false;
+    let listType = ''; // 'ul' or 'ol'
+    
+    for (let line of lines) {
+      let trimmed = line.trim();
+      
+      // Check for headings
+      const h3Match = trimmed.match(/^###\s+(.*)$/);
+      const h2Match = trimmed.match(/^##\s+(.*)$/);
+      const h1Match = trimmed.match(/^#\s+(.*)$/);
+      
+      // Check for lists
+      const bulletMatch = trimmed.match(/^[\*\-]\s+(.*)$/);
+      const numberMatch = trimmed.match(/^\d+\.\s+(.*)$/);
+      
+      if (h3Match) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        html += `<h5>${formatInline(h3Match[1])}</h5>`;
+      } else if (h2Match) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        html += `<h4>${formatInline(h2Match[1])}</h4>`;
+      } else if (h1Match) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        html += `<h3>${formatInline(h1Match[1])}</h3>`;
+      } else if (bulletMatch) {
+        if (!inList || listType !== 'ul') {
+          if (inList) html += `</${listType}>`;
+          html += '<ul>';
+          inList = true;
+          listType = 'ul';
+        }
+        html += `<li>${formatInline(bulletMatch[1])}</li>`;
+      } else if (numberMatch) {
+        if (!inList || listType !== 'ol') {
+          if (inList) html += `</${listType}>`;
+          html += '<ol>';
+          inList = true;
+          listType = 'ol';
+        }
+        html += `<li>${formatInline(numberMatch[1])}</li>`;
+      } else {
+        if (inList) {
+          html += `</${listType}>`;
+          inList = false;
+          listType = '';
+        }
+        if (trimmed === '') {
+          html += '<br>';
+        } else {
+          html += `<p>${formatInline(line)}</p>`;
+        }
+      }
+    }
+    
+    if (inList) {
+      html += `</${listType}>`;
+    }
+    
+    return html;
+  }
+  
+  function formatInline(str) {
+    let escaped = escapeHtml(str);
+    // Bold: **text** -> <strong>text</strong>
+    escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Italic: *text* -> <em>text</em>
+    escaped = escaped.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    return escaped;
+  }
+
+  // Lawyer Filter logic
+  function filterDirectory() {
+    const searchVal = document.getElementById('dirSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.lawyer-card');
+    
+    cards.forEach(card => {
+      const txt = card.textContent.toLowerCase();
+      if (txt.includes(searchVal)) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Toast alert for future changes shown strictly once on load
+  window.dismissMoreChangesToast = function() {
+    const toast = document.getElementById('moreChangesToast');
+    if (toast) {
+      toast.style.top = '-100px';
+      setTimeout(() => {
+        toast.remove();
+      }, 600);
+    }
+  };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('shown_more_changes_alert')) {
+      const toast = document.createElement('div');
+      toast.id = 'moreChangesToast';
+      toast.style.position = 'fixed';
+      toast.style.top = '-100px';
+      toast.style.left = '50%';
+      toast.style.transform = 'translateX(-50%)';
+      toast.style.background = 'var(--stamp)';
+      toast.style.color = 'var(--white)';
+      toast.style.padding = '14px 24px';
+      toast.style.borderRadius = '30px';
+      toast.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
+      toast.style.zIndex = '10000';
+      toast.style.display = 'flex';
+      toast.style.alignItems = 'center';
+      toast.style.gap = '12px';
+      toast.style.fontSize = '0.92rem';
+      toast.style.fontWeight = '600';
+      toast.style.transition = 'top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      toast.style.border = '1px solid rgba(251,249,244,0.2)';
+      
+      const msg = currentLanguage === 'hi'
+        ? '⚠️ इस परियोजना में आगे और बदलाव होने वाले हैं।'
+        : '⚠️ There are going to be more changes in this project.';
+        
+      toast.innerHTML = `
+        <span>${msg}</span>
+        <button style="background:none; border:none; color:var(--white); font-weight:bold; cursor:pointer; font-size:1.2rem; padding: 0 4px; line-height: 1;" onclick="dismissMoreChangesToast()">×</button>
+      `;
+      
+      document.body.appendChild(toast);
+      
+      // Animate slide down
+      setTimeout(() => {
+        toast.style.top = '24px';
+      }, 500);
+
+      // Auto dismiss after 8.5 seconds
+      setTimeout(() => {
+        dismissMoreChangesToast();
+      }, 8500);
+      
+      localStorage.setItem('shown_more_changes_alert', 'true');
+    }
+  });
+</script>
+
+</body>
+</html>
