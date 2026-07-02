@@ -1257,6 +1257,44 @@
     border-bottom-color: var(--stamp);
     background: var(--paper);
   }
+
+  /* ---------- Comprehensive Mobile Responsiveness ---------- */
+  @media (max-width: 768px) {
+    /* Header stacking */
+    .header-inner { flex-direction: column; gap: 16px; }
+    .header-controls { flex-wrap: wrap; justify-content: center; }
+    nav { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    
+    /* Hero Section padding and font sizes */
+    .hero { padding: 40px 16px; }
+    h1 { font-size: clamp(2rem, 8vw, 2.8rem); max-width: 100%; }
+    
+    /* Wizard / Layout */
+    .dispute-grid, .directory-grid, .dashboard-grid { grid-template-columns: 1fr !important; }
+    .wizard-selectors { flex-direction: column; }
+    .wizard-select { width: 100%; }
+    
+    /* Modals & Overlays */
+    .modal-card { margin: 15px; max-width: calc(100% - 30px); }
+    .shield-box { padding: 20px; margin: 15px; }
+    
+    /* Family Tree Scrollability */
+    .tree-workspace { overflow-x: auto; padding: 16px; justify-content: flex-start; }
+    .tree-container { min-width: 600px; padding-bottom: 20px; }
+    
+    /* AI Chat Mobile Layout */
+    .chat-container {
+      width: 100%; height: 100%;
+      right: 0; bottom: 0;
+      border-radius: 0;
+      max-height: 100vh;
+      border: none;
+    }
+    .chat-container.hidden { transform: translateY(100%); }
+    
+    /* Generic Spacing */
+    section { padding: 40px 16px; }
+  }
 </style>
 </head>
 <body>
