@@ -25,6 +25,21 @@
     --warning: #B37400;
   }
 
+  body.dark-theme {
+    --paper: #121212;
+    --paper-dark: #1E1E1E;
+    --ink: #E0E0E0;
+    --ink-light: #A0A0A0;
+    --stamp: #D35C5C;
+    --stamp-dark: #B34040;
+    --ledger: #B8A870;
+    --line: rgba(255,255,255,0.15);
+    --white: #1A1A1A;
+    background-color: var(--paper);
+    color: var(--ink);
+  }
+
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }
@@ -1316,6 +1331,7 @@
       <a href="#directory" data-translate="nav_directory">Lawyer Directory</a>
       
       <div class="header-controls">
+        <button id="themeToggle" onclick="toggleTheme()" style="background: transparent; border: none; font-size: 1.4rem; cursor: pointer; padding: 4px 8px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" title="Toggle Dark Mode" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">🌙</button>
         <button id="langToggle" class="lang-btn" onclick="toggleLanguage()">हिन्दी</button>
         <button id="authHeaderBtn" class="auth-btn" onclick="openAuthModal()" data-translate="btn_login">Sign In</button>
         <div id="userHeaderBadge" class="user-badge">
@@ -1448,6 +1464,35 @@
       </div>
     </div>
 
+    <!-- Digital Document Vault -->
+    <div class="dash-card" style="margin-top: 16px;">
+      <div class="dash-card-title">
+        <span>My Digital Document Vault</span>
+        <span class="badge" style="background: #2E5E3A; color: var(--white);">DigiLocker Verified</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--ink-light); margin-bottom: 12px;">Access your official government-issued land records securely stored in your vault.</p>
+      <div class="vault-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+        
+        <div class="vault-doc" onclick="alert('Digital signature verified. Opening Sale Deed...')" style="border: 1px solid var(--line); border-radius: 8px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--paper-dark);">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">📜</div>
+          <div style="font-weight: 600; font-size: 0.9rem;">Sale Deed (Bainama)</div>
+          <div style="font-size: 0.75rem; color: #2E5E3A; margin-top: 4px;">✅ Verified</div>
+        </div>
+        
+        <div class="vault-doc" onclick="alert('Digital signature verified. Opening 7/12 Extract...')" style="border: 1px solid var(--line); border-radius: 8px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--paper-dark);">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">📄</div>
+          <div style="font-weight: 600; font-size: 0.9rem;">7/12 Extract</div>
+          <div style="font-size: 0.75rem; color: #2E5E3A; margin-top: 4px;">✅ Verified</div>
+        </div>
+
+        <div class="vault-doc" onclick="alert('Digital signature verified. Opening Encumbrance Certificate...')" style="border: 1px solid var(--line); border-radius: 8px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--paper-dark);">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">🔐</div>
+          <div style="font-weight: 600; font-size: 0.9rem;">Encumbrance Cert.</div>
+          <div style="font-size: 0.75rem; color: #2E5E3A; margin-top: 4px;">✅ Verified</div>
+        </div>
+      </div>
+    </div>
+
     <!-- Legal Work Alert center -->
     <div class="dash-card" style="border-color: var(--stamp);">
       <div class="dash-card-title" style="color: var(--stamp);">
@@ -1483,6 +1528,23 @@
 
           <div class="tree-actions-bar">
             <button class="btn btn-primary" style="width: 100%;" onclick="openCorrectionModal()" data-translate="btn_request_correction">Request Succession / Heir Correction</button>
+          </div>
+
+          <!-- Case Tracker Timeline -->
+          <div class="case-tracker" id="caseTracker" style="display:none; margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 16px;">
+            <div style="font-weight: 600; margin-bottom: 12px; color: var(--stamp);">Live Petition Tracker</div>
+            <div style="display: flex; flex-direction: column; gap: 12px; border-left: 2px solid var(--stamp); padding-left: 14px; margin-left: 6px;">
+              <div style="position: relative;">
+                <div style="position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--success); border: 2px solid var(--paper);"></div>
+                <div style="font-size: 0.9rem; font-weight: 600;">Petition Filed Successfully</div>
+                <div style="font-size: 0.75rem; color: var(--ink-light);" id="trackerDate1">Just now</div>
+              </div>
+              <div style="position: relative;">
+                <div style="position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--warning); border: 2px solid var(--paper);"></div>
+                <div style="font-size: 0.9rem; font-weight: 600;">Pending Tehsildar Verification</div>
+                <div style="font-size: 0.75rem; color: var(--ink-light);">Awaiting manual review of documents</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1622,6 +1684,7 @@
       </div>
       <div class="chat-input-row">
         <input type="text" id="chatInput" placeholder="e.g. My neighbour built a wall on my land" />
+        <button onclick="startVoiceInput()" id="micBtn" style="background: var(--paper); border: 1.5px solid var(--line); color: var(--ink); padding: 12px 14px; border-radius: 4px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s;" title="Voice Assistant">🎙️</button>
         <button onclick="sendChat()" data-translate="btn_ask">Ask</button>
       </div>
       <div class="disclaimer">⚠ General guidance only — not a substitute for advice from a lawyer or local revenue office.</div>
@@ -2714,6 +2777,11 @@
     document.getElementById('chatShield').style.display = 'none';
     document.getElementById('directoryShield').style.display = 'none';
 
+    // Hide the Hero section and auto-scroll to top
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) heroSection.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Show Header Profile
     document.getElementById('authHeaderBtn').style.display = 'none';
     document.getElementById('userHeaderBadge').style.display = 'flex';
@@ -2996,12 +3064,65 @@
         renderAlerts(currentUserData.notifications);
       }
 
+      // Generate and Download PDF automatically
+      generatePetitionPDF(petitionId, heirName, relation, type, grounds);
+
+      // Show Tracker timeline
+      const tracker = document.getElementById('caseTracker');
+      if (tracker) {
+        tracker.style.display = 'block';
+        document.getElementById('trackerDate1').textContent = new Date().toLocaleString();
+      }
+
       closeCorrectionModal();
 
       alert(currentLanguage === 'hi'
-        ? `संशोधन याचिका सफलतापूर्वक दर्ज की गई!\nआवेदन संख्या: ${petitionId}\nस्थिति: समीक्षा के लिए तहसीलदार कार्यालय में लंबित।`
-        : `Correction Petition filed successfully!\nApplication ID: ${petitionId}\nStatus: Pending review at the Tehsildar's office.`);
+        ? `संशोधन याचिका सफलतापूर्वक दर्ज की गई!\nआवेदन संख्या: ${petitionId}\nस्थिति: समीक्षा के लिए तहसीलदार कार्यालय में लंबित।\n\n(आपकी रसीद PDF के रूप में डाउनलोड हो गई है)`
+        : `Correction Petition filed successfully!\nApplication ID: ${petitionId}\nStatus: Pending review at the Tehsildar's office.\n\n(Your receipt has been downloaded as a PDF)`);
     }, 1500);
+  }
+
+  // Generate PDF Draft for Petitions
+  function generatePetitionPDF(petitionId, heirName, relation, type, grounds) {
+    if (!window.jspdf) return;
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(22);
+    doc.text("Government of India", 105, 20, null, null, "center");
+    
+    doc.setFontSize(16);
+    doc.text("Revenue Department - Land Registry", 105, 30, null, null, "center");
+    
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "normal");
+    doc.text("Legal Succession / Heir Amendment Acknowledgment", 105, 45, null, null, "center");
+    
+    doc.setLineWidth(0.5);
+    doc.line(20, 50, 190, 50);
+
+    doc.setFontSize(12);
+    doc.text(`Petition ID: ${petitionId}`, 20, 65);
+    doc.text(`Date Filed: ${new Date().toLocaleDateString()}`, 20, 75);
+    
+    doc.text(`Applicant Name: ${currentUserData ? currentUserData.name : 'Citizen'}`, 20, 95);
+    doc.text(`Proposed Heir Name: ${heirName}`, 20, 105);
+    doc.text(`Relation to Applicant: ${relation}`, 20, 115);
+    doc.text(`Petition Type: ${type}`, 20, 125);
+    
+    doc.text("Grounds for Amendment:", 20, 145);
+    doc.setFont("helvetica", "italic");
+    doc.text(grounds || "N/A", 20, 155, { maxWidth: 170 });
+    
+    doc.setFont("helvetica", "bold");
+    doc.text("Status: PENDING REVIEW AT TEHSILDAR OFFICE", 20, 190);
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("This is an electronically generated receipt and does not require a physical signature.", 105, 270, null, null, "center");
+
+    doc.save(`Petition_${petitionId}.pdf`);
   }
 
   // Calculate Class I shares dynamically
@@ -3213,6 +3334,46 @@
     if (e.key === 'Enter') sendChat();
   });
 
+  // ---------------- Voice Assistant (Web Speech API) ----------------
+  function startVoiceInput() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert(currentLanguage === 'hi' ? 'आपका ब्राउज़र ध्वनि पहचान का समर्थन नहीं करता है।' : 'Your browser does not support Speech Recognition. Please use Chrome.');
+      return;
+    }
+    
+    const recognition = new SpeechRecognition();
+    recognition.lang = currentLanguage === 'hi' ? 'hi-IN' : 'en-IN';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    const micBtn = document.getElementById('micBtn');
+    const originalContent = micBtn.innerHTML;
+    micBtn.innerHTML = '🔴'; // Indicate recording state
+    micBtn.style.borderColor = 'var(--stamp)';
+
+    recognition.onresult = function(event) {
+      const speechResult = event.results[0][0].transcript;
+      document.getElementById('chatInput').value = speechResult;
+      // Auto send chat upon successful transcription
+      sendChat();
+    };
+
+    recognition.onspeechend = function() {
+      recognition.stop();
+      micBtn.innerHTML = originalContent;
+      micBtn.style.borderColor = 'var(--line)';
+    };
+
+    recognition.onerror = function(event) {
+      console.error('Speech recognition error:', event.error);
+      micBtn.innerHTML = originalContent;
+      micBtn.style.borderColor = 'var(--line)';
+    };
+
+    recognition.start();
+  }
+
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
@@ -3366,6 +3527,13 @@
       localStorage.setItem('shown_more_changes_alert', 'true');
     }
   });
+  // Dark Theme Toggle
+  function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    const btn = document.getElementById('themeToggle');
+    btn.textContent = isDark ? '☀️' : '🌙';
+  }
 </script>
 
 </body>
